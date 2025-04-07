@@ -31,7 +31,7 @@
     border: none;
     padding: 0;
     width: 100%;
-    transition: all 1.0s ease;
+    transition: all 0.5s ease;
   }
   
   .headline-button:hover {

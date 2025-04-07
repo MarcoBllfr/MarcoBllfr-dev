@@ -16,11 +16,11 @@
 
 {#snippet ButtonContent()}
 <div class="headline-container">
-  <Button className="headline-button mb-m" onclick={switchOnMyWorks}>
-    <h2 class="headline-text">
-      {isEducationRender ? "My Education Experience" : "My Work Experience"}
-      <p>{isEducationRender ? "Vedi esperienze lavorative" : "Vedi studi"}</p>
-    </h2>
+  <h2 class="headline-text">
+    {isEducationRender ? "My Education Experience" : "My Work Experience"}
+  </h2>
+  <Button className="headline-button" onclick={switchOnMyWorks}>
+      <p>{isEducationRender ? "Vedi esperienze lavorative →" : "Vedi studi →"}</p>
   </Button>
 </div>
 {/snippet}
@@ -50,9 +50,9 @@
         </li>
       {/each}
     </ul>
-    <div class="headline-container">
+   
       {@render ButtonContent()}
-    </div>
+    
   {:else}
     <ul class="work-experience-list">
       {#each workExperience as job}
@@ -74,9 +74,9 @@
         </li>
       {/each}
     </ul>
-    <div class="headline-container">
+    
       {@render ButtonContent()}
-    </div>
+    
   {/if}
 </section>
 
@@ -86,11 +86,11 @@
     justify-content: space-between;
     width: 100%;
   }
-  
+
   .work-experience-list {
     width: 65%;
   }
-  
+
   .headline-container {
     width: 30%;
     display: flex;
@@ -98,87 +98,48 @@
     justify-content: flex-start;
     align-items: stretch;
   }
-  
-  /* Stili bottone custom */
-  :global(.headline-button) {
-    width: 100% !important;
-    min-width: 200px !important;
-    height: auto !important;
-    min-height: 100px !important;
-    white-space: normal !important;
-    padding: 15px 20px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  .headline-text {
-    text-align: center;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    word-wrap: break-word;
-    hyphens: auto;
-  }
-  
+
+
+
   .work-item {
     border-bottom: 1px solid #f0eded;
     padding-bottom: 12px;
   }
-  
+
   .work-item:not(:first-of-type) {
     padding-top: 16px;
   }
-  
+
   .work-item p {
     margin-bottom: 0;
   }
-  
+
   .company-and-date {
     display: flex;
     justify-content: space-between;
   }
-  
+
   .description {
     font-size: 0.9rem;
     line-height: 1.4;
     margin-top: 8px;
   }
-  
+
   .dark-grey {
     color: #777;
   }
-  
+
   @media (max-width: 768px) {
     .work-experience {
       flex-direction: column-reverse;
     }
-    
-    .work-experience-list, 
+
+    .work-experience-list,
     .headline-container {
       width: 100%;
     }
-    
-    :global(.headline-button) {
-      min-height: 60px !important;  /* Bottone più sottile su mobile */
-      padding: 10px 15px !important;
-      margin-bottom: 20px !important;
-    }
-    
-    .headline-text {
-      font-size: 1.3rem;  /* Font leggermente più piccolo su mobile */
-    }
-  }
+
   
-  @media (min-width: 769px) and (max-width: 1200px) {
-    :global(.headline-button) {
-      font-size: 20px !important;
-    }
-    
-    .headline-text {
-      font-size: 1.2rem;
-    }
   }
+
 </style>
