@@ -1,0 +1,184 @@
+<script lang="ts">
+  import { Button } from "$components";
+  let isEducationRender: boolean = $state(true);
+  
+  function switchOnMyWorks() {
+    isEducationRender = !isEducationRender;
+  }
+  
+  interface ExperienceTableProps {
+    workExperience: SanityWorkExperience[];
+    education: SanityEducation[];
+  }
+  
+  let { workExperience, education }: ExperienceTableProps = $props();
+</script>
+
+{#snippet ButtonContent()}
+<div class="headline-container">
+  <Button className="headline-button mb-m" onclick={switchOnMyWorks}>
+    <h2 class="headline-text">
+      {isEducationRender ? "My Education Experience" : "My Work Experience"}
+      <p>{isEducationRender ? "Vedi esperienze lavorative" : "Vedi studi"}</p>
+    </h2>
+  </Button>
+</div>
+{/snippet}
+
+<section class="default-margin work-experience mt-m">
+  {#if isEducationRender}
+    <ul class="work-experience-list">
+      {#each education as edu}
+        <li class="work-item">
+          <article>
+            <h3 class="semi-bold mb-xs">{edu.titolo}</h3>
+            <div class="company-and-date">
+              <p>{edu.scuola}</p>
+              <p class="dark-grey">
+                {edu.startDate?.slice(0, 7)}
+                {#if edu.endDate}
+                  / {edu.endDate.slice(0, 7)}
+                {:else}
+                  / present
+                {/if}
+              </p>
+            </div>
+            {#if edu.descrizione}
+              <p class="mt-xs description dark-grey">{edu.descrizione}</p>
+            {/if}
+          </article>
+        </li>
+      {/each}
+    </ul>
+    <div class="headline-container">
+      {@render ButtonContent()}
+    </div>
+  {:else}
+    <ul class="work-experience-list">
+      {#each workExperience as job}
+        <li class="work-item">
+          <article>
+            <h3 class="semi-bold mb-xs">{job.jobTitle}</h3>
+            <div class="company-and-date">
+              <p>{job.company}</p>
+              <p class="dark-grey">
+                {job.startDate?.slice(0, 7)}
+                {#if job.endDate}
+                  / {job.endDate.slice(0, 7)}
+                {:else}
+                  / present
+                {/if}
+              </p>
+            </div>
+          </article>
+        </li>
+      {/each}
+    </ul>
+    <div class="headline-container">
+      {@render ButtonContent()}
+    </div>
+  {/if}
+</section>
+
+<style>
+  .work-experience {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .work-experience-list {
+    width: 65%;
+  }
+  
+  .headline-container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+  
+  /* Stili bottone custom */
+  :global(.headline-button) {
+    width: 100% !important;
+    min-width: 200px !important;
+    height: auto !important;
+    min-height: 100px !important;
+    white-space: normal !important;
+    padding: 15px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .headline-text {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .work-item {
+    border-bottom: 1px solid #f0eded;
+    padding-bottom: 12px;
+  }
+  
+  .work-item:not(:first-of-type) {
+    padding-top: 16px;
+  }
+  
+  .work-item p {
+    margin-bottom: 0;
+  }
+  
+  .company-and-date {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+  
+  .dark-grey {
+    color: #777;
+  }
+  
+  @media (max-width: 768px) {
+    .work-experience {
+      flex-direction: column-reverse;
+    }
+    
+    .work-experience-list, 
+    .headline-container {
+      width: 100%;
+    }
+    
+    :global(.headline-button) {
+      min-height: 60px !important;  /* Bottone più sottile su mobile */
+      padding: 10px 15px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .headline-text {
+      font-size: 1.3rem;  /* Font leggermente più piccolo su mobile */
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1200px) {
+    :global(.headline-button) {
+      font-size: 20px !important;
+    }
+    
+    .headline-text {
+      font-size: 1.2rem;
+    }
+  }
+</style>
