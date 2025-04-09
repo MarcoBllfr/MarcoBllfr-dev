@@ -1,41 +1,70 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
-    import { Button } from "$components";
-  
-    function goToContactForm() {
-      goto("#contact-form");
-    }
-  </script>
-  
-  <nav class="navbar default-margin">
-    <a href="/" class="logo">MB</a>
-    <div class="navbar-links">
-      <a href="/#about-me" class="nav-link">About Me</a>
-      <a href="/#my-work" class="nav-link">Work</a>
-      <Button className="nav-bar" onclick={goToContactForm}>Contact</Button>
-    </div>
-  </nav>
+  import { goto } from "$app/navigation";
+  import { Button } from "$components";
+  import logo from "$assets/logo.png";
 
-  <style>
+  function goToContactForm() {
+    goto("#contact-form");
+  }
+</script>
+
+<nav class="navbar default-margin">
+  <a href="/" class="logo">
+    <img src={logo} alt="Logo" class="logo-img"/>
+  </a>
+  <div class="navbar-links">
+    <a href="/#about-me" class="nav-link">About Me</a>
+    <a href="/#my-work" class="nav-link">Work</a>
+    <Button className="nav-bar" onclick={goToContactForm}>Contact</Button>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo-img {
+    width: 85px;
+    height: auto;
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: nowrap;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    font-size: 16px;
+    color: inherit;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+
+
+
+  
+  @media (max-width: 768px) {
     .navbar {
-      display: flex;
+      flex-direction: row;
       justify-content: space-between;
-      align-items: center;
-      padding: 20px;
     }
-  
-    .logo {
-      font-size: 35px;
-      font-weight: bold;
-    }
-  
+
     .navbar-links {
-      display: flex;
-      align-items: center;
-      gap: 60px;
+      gap: 20px;
     }
-  
-    .nav-link:hover {
-      text-decoration: underline;
+
+    .logo-img {
+      width: 80px;
     }
-  </style>
+  }
+</style>
