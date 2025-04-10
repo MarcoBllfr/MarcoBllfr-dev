@@ -1,95 +1,33 @@
 <script lang="ts">
-  import { Button, SectionHeadline } from "$components";
- 
-
-  async function onSubmit(event: Event) {
-    isLoading = true;
-    if (contactMail && contactName && informationAboutProject) {
-      const response = await fetch("/api/send-mail",{
-      method:"POST",
-      body: JSON.stringify({contactMail, contactName, informationAboutProject}),
-      headers:{"Content-type":"application/json"},
-     });
-     isLoading = false;
-    if(response.ok){
-      isEmailSent = true;
-    }else{
-      showErrorMessage = true;
-      isLoading = false;
-    }
-    } else {
-      //not send
-      isFormInvalid = true;
-      isLoading = false;
-    }
-  }
-
-  let contactName = $state("");
-  let contactMail = $state("");
-  let informationAboutProject = $state("");
-  let isFormInvalid = $state(false);
-  let isEmailSent = $state(false);
-  let showErrorMessage = $state(false);
-  let isLoading = $state(false);
-
-  $effect(() => {
-    if (contactName || contactMail || informationAboutProject) {
-      isFormInvalid = false;
-    }
-  });
+  import { SectionHeadline } from "$components";
+  import Icon from "@iconify/svelte";
 </script>
 
 <section class="mt-l">
   <SectionHeadline sectionName="contact-form">Let's talk</SectionHeadline>
-  <div class="form-container default-margin mt-m">
-    {#if isEmailSent }
-      <div class="spinner-container">
-        <h3>
-          Thank you for getting in contact with me. I'll usually reply within 48
-          hours.
-        </h3>
-      </div>
-      {:else if isLoading}
-      <div class="spinner-container">
-        <div class="spinner"></div>
-        <h3>Sending off the contact form.</h3>
-      </div>
-      {:else if showErrorMessage}
-      <h3>
-        We seem to have trouble with our server at the moment. Please send me an
-        email directly to <a class="link" href="mailto:testmail@testmail.com">
-          testmail@testmail.com
-        </a>
-      </h3>
-      {:else}
-      <form>
-        <input
-          class="text-input mb-m"
-          class:input-error={isFormInvalid && !Boolean(contactName.length)}
-          placeholder="Your Name"
-          bind:value={contactName}
-        />
-        <input
-          class="text-input mb-m"
-          class:input-error={isFormInvalid && !Boolean(contactMail.length)}
-          placeholder="Your Email"
-          bind:value={contactMail}
-        />
-        <textarea
-          placeholder="Tell me what's up."
-          class:input-error={isFormInvalid &&
-          !Boolean(informationAboutProject.length)}
-          bind:value={informationAboutProject}
-        ></textarea>
-        <Button onclick={onSubmit}>Submit</Button>
-      </form>
-    {/if}
-    <div class="form-text">
+  <div class="contact-container default-margin mt-m">
+    <div class="contact-text">
       <h3 class="bold mb-s">Contattami</h3>
-        <p>!Funzione ancora non implementata!</p>
-        <p>
-        Contatami pure se vuoi informazioni oppure hai idee da proporre sono sempre pronto a nuove sfide e aperto ad ogni idea.
+      <p>
+        Sono sempre pronto a nuove sfide e aperto ad ogni idea. Puoi contattarmi attraverso i seguenti canali:
       </p>
+    </div>
+    
+    <div class="social-links">
+      <a href="mailto:marco@example.com" class="social-link" aria-label="Email">
+        <Icon icon="mdi:email-outline" width={50} />
+        <span class="link-text">Email</span>
+      </a>
+      
+      <a href="https://linkedin.com/in/marco-example" target="_blank" class="social-link" aria-label="LinkedIn">
+        <Icon icon="mdi:linkedin" width={50} />
+        <span class="link-text">LinkedIn</span>
+      </a>
+      
+      <a href="https://github.com/marco-example" target="_blank" class="social-link" aria-label="GitHub">
+        <Icon icon="mdi:github" width={50} />
+        <span class="link-text">GitHub</span>
+      </a>
     </div>
   </div>
 </section>
@@ -99,83 +37,78 @@
     padding-bottom: 140px;
   }
 
-  .form-container {
+  .contact-container {
     display: flex;
     justify-content: space-between;
-  }
-
-  .form-text {
-    width: 39%;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
     align-items: flex-start;
+  }
+
+  .contact-text {
     width: 45%;
   }
 
-  form * {
-    font-size: 20px;
-    font-family: "Inter Tight", sans-serif;
-    font-weight: 500;
-    color: black;
-  }
-
-  textarea,
-  input {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.035);
-    border-radius: 8px;
-    padding: 4px 12px;
-    outline: none;
-    border: none;
-  }
-
-  input {
-    height: 48px;
-  }
-
-  textarea {
-    height: 120px;
-    margin-bottom: 40px;
-  }
-
-  textarea::placeholder,
-  input::placeholder {
-    font-size: 20px;
-    font-weight: 400;
-  }
-
-  .input-error {
-    background-color: rgba(223, 87, 87, 0.667);
-  }
-
-  .input-error::placeholder {
-    color: white;
-  }
-
-  .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: black;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    margin-right: 8px;
-    animation: spin 0.5s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .spinner-container {
+  .social-links {
+    width: 45%;
     display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .social-link:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.035);
+  }
+
+  .social-link :global(svg) {
+    margin-right: 15px;
+  }
+
+  .link-text {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+    }
+
+    .contact-text {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    
+    .social-links {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+    }
+    
+    .social-link {
+      padding: 15px;
+    }
+    
+    .social-link :global(svg) {
+      width: 55px !important;
+      height: 55px !important;
+      margin-right: 0;
+    }
+    
+    .link-text {
+      display: none;
+    }
+    
+    .social-link:hover {
+      transform: scale(1.1);
+    }
   }
 </style>

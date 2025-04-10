@@ -17,23 +17,59 @@
     </div>
 </section>
 <style>
-    .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+   .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .skills-container {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  i {
+    font-size: 80px;
+    color: black;
+    transition: transform 0.3s ease;
+  }
   
+  i:hover {
+    transform: scale(1.1);
+  }
+  
+ 
+  @media (max-width: 1024px) {
     .skills-container {
-      width: 40%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      row-gap: 16px;
-      column-gap: 10px;
+      width: 90%;
     }
-  
+    
     i {
-      font-size: 80px;
-      color: black;
+      font-size: 70px;
     }
+  }
+  
+  @media (max-width: 768px) {
+    .skills-container {
+      width: 100%;
+      gap: 20px;
+    }
+    
+    i {
+      font-size: 60px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .skills-container {
+      gap: 15px;
+    }
+    
+    i {
+      font-size: 50px;
+    }
+  }
   </style>

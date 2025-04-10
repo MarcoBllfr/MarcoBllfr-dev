@@ -81,10 +81,11 @@
 </section>
 
 <style>
-  .work-experience {
+   .work-experience {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    gap: 5%;
   }
 
   .work-experience-list {
@@ -98,8 +99,6 @@
     justify-content: flex-start;
     align-items: stretch;
   }
-
-
 
   .work-item {
     border-bottom: 1px solid #f0eded;
@@ -129,17 +128,36 @@
     color: #777;
   }
 
+  @media (max-width: 1024px) {
+    .headline-container {
+      width: 35%;
+    }
+    
+    .work-experience-list {
+      width: 60%;
+    }
+  }
+
   @media (max-width: 768px) {
     .work-experience {
       flex-direction: column-reverse;
+      gap: 30px;
     }
 
     .work-experience-list,
     .headline-container {
       width: 100%;
     }
-
-  
   }
-
+  
+  @media (max-width: 480px) {
+    .company-and-date {
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .date {
+      font-size: 14px;
+    }
+  }
 </style>

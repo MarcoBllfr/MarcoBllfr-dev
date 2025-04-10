@@ -50,47 +50,93 @@
   </div>
 </section>
 <style>
-    img {
-      width: 100%;
-      border-radius: 20px;
-      object-fit: cover;
-      cursor: pointer;
-    }
+   img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .more-projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .more-projects-container img {
+    height: 350px;
+  }
+
+  .main-project img {
+    max-height: 450px;
+  }
+
+  .project {
+    width: 48%;
+  }
+
+  .project-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-to-article {
+    display: block;
+    font-size: 40px;
+    border: 1px solid black;
+    border-radius: 40px;
+    padding: 0px 24px;
+    transition: all 0.3s ease;
+  }
   
-    .more-projects-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+  .btn-to-article:hover {
+    background-color: black;
+    color: white;
+  }
+
+  .company {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
   
+  
+  @media (max-width: 1024px) {
     .more-projects-container img {
-      height: 350px;
+      height: 300px;
     }
-  
+    
     .main-project img {
-      max-height: 450px;
+      max-height: 400px;
     }
+  }
   
+ 
+  @media (max-width: 768px) {
+    .more-projects-container {
+      flex-direction: column;
+    }
+    
     .project {
-      width: 48%;
+      width: 100%;
+      margin-bottom: 20px;
     }
-  
-    .project-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    
+    .more-projects-container img {
+      height: auto;
+      max-height: 350px;
     }
-  
+    
     .btn-to-article {
-      display: block;
-      font-size: 40px;
-      border: 1px solid black;
-      border-radius: 40px;
-      padding: 0px 24px;
+      font-size: 32px;
+      padding: 0px 18px;
     }
+  }
   
+  @media (max-width: 480px) {
     .company {
-      font-size: 18px;
-      margin-bottom: 0;
+      font-size: 16px;
     }
+  }
   </style>

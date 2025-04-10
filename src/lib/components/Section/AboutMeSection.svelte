@@ -1,50 +1,153 @@
 <script lang="ts">
-
-  import { Button, SectionHeadline,ExperienceTable } from "$components";
-  import image from "$assets/about-me.jpeg";
-  import { goto } from "$app/navigation";
-  function onclick(){
-    goto("/#contact-form");
-  }
-
-  interface AboutMeProps{
-    workExperience : SanityWorkExperience[];
-    education : SanityEducation[];
-  }
-  let {workExperience, education}: AboutMeProps= $props();
-</script>
-
-<section class="about-me mt-l ">
-  <SectionHeadline sectionName={"about-me"}>About Me</SectionHeadline>
-  <div class="mt-m content-container default-margin">
-    <img class="image" src={image} alt="" />
-    <div class="text">
-      <p>
-        Ciao, sono Marco, sviluppatore web con la passione per creare esperienze digitali intuitive e funzionali.
-        Il mio percorso nel mondo dello sviluppo è guidato dalla curiosità e dal desiderio costante di apprendimento. Lavoro con diversi linguaggi e framework per realizzare soluzioni web su misura per ogni esigenza.
-        Quando non sono al computer, mi dedico alla stampa 3D, hobby che unisce la mia passione per la tecnologia con la creatività. Questa attività ha affinato la mia precisione e capacità di problem-solving, qualità che porto anche nei miei progetti di sviluppo.
-        In questo portfolio troverai una selezione dei miei lavori più significativi e una panoramica delle mie competenze tecniche. Sono sempre aperto a nuove collaborazioni e sfide interessanti!
-      </p>
-      <Button className="mt-m" {onclick}>Contattami</Button>
+    import { Button, SectionHeadline, ExperienceTable } from "$components";
+    import image from "$assets/about-me.jpeg";
+    import { goto } from "$app/navigation";
+  
+    function onclick() {
+      goto("/#contact-form");
+    }
+  
+    interface AboutMeProps {
+      workExperience: SanityWorkExperience[];
+      education: SanityEducation[];
+    }
+  
+    let { workExperience, education }: AboutMeProps = $props();
+  </script>
+  
+  <section class="about-me mt-l">
+    <SectionHeadline sectionName={"about-me"}>About Me</SectionHeadline>
+  
+    <div class="mt-m content-container default-margin">
+      <div class="image-wrapper">
+        <img class="image" src={image} alt="Marco" />
+      </div>
+      <div class="text">
+        <p>
+          Ciao, sono <strong>Marco</strong>, uno <strong>sviluppatore web</strong> con la passione per creare
+          <strong>esperienze digitali</strong> fluide e intuitive.
+          Amo progettare soluzioni che uniscano <strong>funzionalità</strong> e <strong>design</strong>, usando
+          tecnologie moderne come <span class="tech">Svelte</span> e <span class="tech">React</span>.
+        </p>
+        <p>
+          Il mio percorso è guidato dalla <strong>curiosità</strong> e dal desiderio di
+          <strong>crescita continua</strong>. Mi piace lavorare su progetti su misura, adattando
+          <strong>linguaggi</strong> e <strong>framework</strong> alle esigenze specifiche.
+        </p>
+        <p>
+          Nel tempo libero esploro la <strong>stampa 3D</strong>, un hobby che mi permette di unire
+          <strong>tecnologia</strong> e <strong>creatività</strong>, e che ha affinato la mia attenzione ai dettagli e
+          il mio problem-solving.
+        </p>
+        <p>
+          In questo portfolio troverai i miei <strong>progetti più rilevanti</strong> e una panoramica delle mie
+          <strong>competenze tecniche</strong>. Sono sempre aperto a <em>nuove sfide</em> e collaborazioni!
+        </p>
+        <Button className="mt-m" {onclick}>Contattami</Button>
+      </div>
     </div>
-  </div>
-  <ExperienceTable {workExperience}{education}/>
-</section>
-<style>
+  
+    <ExperienceTable {workExperience} {education} />
+  </section>
+  
+  <style>
     .content-container {
       display: flex;
-      justify-content: space-between;
-      align-items: stretch;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  
+    .image-wrapper {
+      flex: 1 1 300px;
+      max-width: 400px;
+      display: flex;
+      justify-content: center;
     }
   
     .image {
-      width: 42%;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
       border-radius: 20px;
       object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
   
     .text {
-      width: 55%;
+      flex: 1 1 320px;
+      max-width: 600px;
       text-align: left;
+      font-size: 1rem;
+    }
+  
+    .text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+  
+    .text strong {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+  
+    .text em {
+      font-style: italic;
+      color: #555;
+    }
+  
+    .tech {
+      font-weight: bold;
+      background-color: #f3f3f3;
+      padding: 0.15em 0.5em;
+      border-radius: 6px;
+      font-family: monospace;
+      color: #ff3e00;
+    }
+  
+    @media (max-width: 768px) {
+      .content-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+      }
+  
+      .image-wrapper {
+        width: 80%;
+        max-width: 250px;
+      }
+  
+      .text {
+        width: 100%;
+        padding: 0 1rem;
+        font-size: 0.95rem;
+      }
+  
+      .text p {
+        text-align: justify;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .text {
+        font-size: 0.9rem;
+      }
+  
+      .tech {
+        font-size: 0.85rem;
+      }
+  
+      .image-wrapper {
+        width: 80%;
+        max-width: 250px;
+        max-height: 300px;
+        height: 80%;
+      }
+      .image {
+        border-radius: 25%;
+      }
     }
   </style>
+  
