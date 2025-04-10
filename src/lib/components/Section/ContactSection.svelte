@@ -64,7 +64,7 @@
 
   .social-link:hover {
     transform: translateY(-5px);
-    background-color: rgba(0, 0, 0, 0.035);
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
   .social-link :global(svg) {

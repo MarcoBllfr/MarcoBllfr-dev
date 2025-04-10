@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Button, SectionHeadline, ExperienceTable } from "$components";
-    import image from "$assets/about-me.jpeg";
+    import image from "$assets/about-me.webp";
     import { goto } from "$app/navigation";
   
     function onclick() {
@@ -25,7 +25,7 @@
       <div class="text">
         <p>
           Ciao, sono <strong>Marco</strong>, uno <strong>sviluppatore web</strong> con la passione per creare
-          <strong>esperienze digitali</strong> fluide e intuitive.
+          <span class="important">esperienze digitali</span> fluide e intuitive.
           Amo progettare soluzioni che uniscano <strong>funzionalità</strong> e <strong>design</strong>, usando
           tecnologie moderne come <span class="tech">Svelte</span> e <span class="tech">React</span>.
         </p>

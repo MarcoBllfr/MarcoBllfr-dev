@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { Button } from "$components";
+  import { Button, DarkThemeButton } from "$components";
+ 
   import logo from "$assets/logo.png";
 
   function goToContactForm() {
@@ -15,6 +16,7 @@
   <div class="navbar-links">
     <a href="/#about-me" class="nav-link">About Me</a>
     <a href="/#my-work" class="nav-link">Work</a>
+    <DarkThemeButton />
     <Button className="nav-bar" onclick={goToContactForm}>Contact</Button>
   </div>
 </nav>
@@ -50,9 +52,6 @@
     text-decoration: underline;
   }
 
-
-
-  
   @media (max-width: 768px) {
     .navbar {
       flex-direction: row;

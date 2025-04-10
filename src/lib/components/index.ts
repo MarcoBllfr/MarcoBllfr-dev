@@ -9,3 +9,4 @@ export {default as SkillsSection} from "./Section/SkillsSection.svelte"
 export {default as ContactSection} from "./Section/ContactSection.svelte"
 export {default as Header } from "./Header.svelte";
 export { default as Footer } from "./Footer.svelte";
+export {default as DarkThemeButton} from "./DarkThemeButton.svelte"
