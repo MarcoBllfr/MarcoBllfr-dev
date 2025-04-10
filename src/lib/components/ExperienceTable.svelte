@@ -151,13 +151,18 @@
   }
   
   @media (max-width: 480px) {
-    .company-and-date {
-      flex-direction: column;
-      gap: 4px;
-    }
-    
-    .date {
-      font-size: 14px;
-    }
+  .company-and-date {
+    flex-direction: column;
+    gap: 4px;
   }
+  
+  .date {
+    font-size: 14px;
+  }
+  
+  .work-item {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 </style>

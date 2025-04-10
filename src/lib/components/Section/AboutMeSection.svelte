@@ -110,7 +110,6 @@
     @media (max-width: 768px) {
       .content-container {
         flex-direction: row;
-        align-items: center;
         gap: 2rem;
       }
   
@@ -140,13 +139,13 @@
       }
   
       .image-wrapper {
-        width: 80%;
-        max-width: 250px;
-        max-height: 300px;
-        height: 80%;
+        width: 50%;
+        max-width: 200px;
+        max-height: 250px;
+        height: 50%;
       }
       .image {
-        border-radius: 25%;
+        border-radius: 30%;
       }
     }
   </style>

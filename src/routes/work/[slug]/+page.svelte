@@ -56,9 +56,22 @@
   
     .project-container {
       display: flex;
+      flex-wrap: wrap; 
+      gap: 2rem; 
     }
   
     .meta-data {
       min-width: 200px;
+      flex: 1 0 200px; 
+    }
+    
+    .project-text {
+      flex: 3 0 300px; 
+    }
+    
+    @media (max-width: 768px) {
+      .project-container {
+        flex-direction: column;
+      }
     }
   </style>

@@ -27,6 +27,9 @@
     color: white;
     padding: 40px 20px;
     text-align: center;
+    width: 100%; 
+    box-sizing: border-box; 
+    overflow: hidden; 
   }
 
   .footer-link {
