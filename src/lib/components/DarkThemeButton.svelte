@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import Icon from "@iconify/svelte";
 
-  let isDarkMode: boolean = $state(false);
+  let isDarkMode: boolean = $state(true);
 
   onMount(() => {
     const savedTheme = localStorage.getItem("theme");

@@ -9,6 +9,7 @@ type SanityWorkExperience = {
   startDate?: string;
   endDate?: string;
 };
+
 type SanityEducation = {
   _id: string
   _type: 'education'
@@ -21,6 +22,7 @@ type SanityEducation = {
   startDate?: string
   endDate?: string
 }
+
 type SanityProject = {
   _id: string;
   _type: "project";
@@ -88,18 +90,26 @@ interface ProcessedProject {
   content: Array<ProcessedTextContent|ProcessedImgContent>
 };
 
-interface ProcessedTextContent{
-  type:'text';
+
+interface ProcessedTextBlock {
+  type: "text" | "link";
+  content: string;
+  href?: string;
+}
+
+interface ProcessedTextContent {
+  type: 'text';
   style: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-  textToRender:string;
+  blocks: ProcessedTextBlock[];
 };
-interface ProcessedImgContent{
-  type:"image";
-  url:string;
+
+interface ProcessedImgContent {
+  type: "image";
+  url: string;
 };
 
 interface Skill {
   name: string
-    iconClass: string
-    _key: string
+  iconClass: string
+  _key: string
 }

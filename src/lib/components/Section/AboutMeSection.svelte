@@ -24,24 +24,22 @@
       </div>
       <div class="text">
         <p>
-          Ciao, sono <strong>Marco</strong>, uno <strong>sviluppatore web</strong> con la passione per creare
-          <span class="important">esperienze digitali</span> fluide e intuitive.
-          Amo progettare soluzioni che uniscano <strong>funzionalità</strong> e <strong>design</strong>, usando
-          tecnologie moderne come <span class="tech">Svelte</span> e <span class="tech">React</span>.
+          Ciao, sono <span class="important">Marco</span>, un <span class="important">web developer</span> con la passione per la tecnoligia e l'informatica.
+          Progetto siti web che uniscono <span class="important">funzionalità e design</span>, usando
+          alcuni framework come <span class="tech">Svelte</span> e <span class="tech">React</span>.
         </p>
         <p>
-          Il mio percorso è guidato dalla <strong>curiosità</strong> e dal desiderio di
-          <strong>crescita continua</strong>. Mi piace lavorare su progetti su misura, adattando
-          <strong>linguaggi</strong> e <strong>framework</strong> alle esigenze specifiche.
+          Il mio percorso e interesse nella programazzione sono iniziati gia alle superiori e spinto dal desiderio di
+          <span class="important">crescita continua</span> ho iniziato a studiare da vari
+          linguaggi e <span class="important">framework</span>.
         </p>
         <p>
-          Nel tempo libero esploro la <strong>stampa 3D</strong>, un hobby che mi permette di unire
-          <strong>tecnologia</strong> e <strong>creatività</strong>, e che ha affinato la mia attenzione ai dettagli e
-          il mio problem-solving.
+          Nel tempo libero esploro la stampa 3D, un hobby che mi permette di unire
+          tecnologia e creatività, e che ha affinato la mia attenzione ai dettagli.
         </p>
         <p>
-          In questo portfolio troverai i miei <strong>progetti più rilevanti</strong> e una panoramica delle mie
-          <strong>competenze tecniche</strong>. Sono sempre aperto a <em>nuove sfide</em> e collaborazioni!
+          In questo portfolio troverai i miei <span class="important">progetti più rilevanti</span> e una panoramica delle mie
+          competenze tecniche. Sono sempre aperto a <em>nuove sfide</em> e collaborazioni!
         </p>
         <Button className="mt-m" {onclick}>Contattami</Button>
       </div>
@@ -88,10 +86,7 @@
       line-height: 1.6;
     }
   
-    .text strong {
-      font-weight: 600;
-      color: #1a1a1a;
-    }
+
   
     .text em {
       font-style: italic;

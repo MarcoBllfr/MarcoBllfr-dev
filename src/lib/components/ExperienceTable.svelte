@@ -61,7 +61,7 @@
             <h3 class="semi-bold mb-xs">{job.jobTitle}</h3>
             <div class="company-and-date">
               <p>{job.company}</p>
-              <p class="dark-grey">
+              <p class="dark-grey date">
                 {job.startDate?.slice(0, 7)}
                 {#if job.endDate}
                   / {job.endDate.slice(0, 7)}
