@@ -14,17 +14,17 @@
     </div>
     
     <div class="social-links">
-      <a href="mailto:marco@example.com" class="social-link" aria-label="Email">
+      <a href="mailto:marcobella2@proton.me" class="social-link" aria-label="Email">
         <Icon icon="mdi:email-outline" width={50} />
         <span class="link-text">Email</span>
       </a>
       
-      <a href="https://linkedin.com/in/marco-example" target="_blank" class="social-link" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/marcobllfr" target="_blank" class="social-link" aria-label="LinkedIn">
         <Icon icon="mdi:linkedin" width={50} />
         <span class="link-text">LinkedIn</span>
       </a>
       
-      <a href="https://github.com/marco-example" target="_blank" class="social-link" aria-label="GitHub">
+      <a href="https://github.com/MarcoBllfr" target="_blank" class="social-link" aria-label="GitHub">
         <Icon icon="mdi:github" width={50} />
         <span class="link-text">GitHub</span>
       </a>

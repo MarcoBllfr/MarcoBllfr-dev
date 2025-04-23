@@ -1,5 +1,6 @@
 <script lang="ts">
   import { SectionHeadline } from "$components";
+  import Icon from "@iconify/svelte";
 
   interface MyworksProps {
     projects: ProcessedProject[];
@@ -9,7 +10,6 @@
   const mainProjectIndex = projects.findIndex(project => project.name === "Book Nest");
   const mainProject = projects[mainProjectIndex];
   
-  
   const otherProjects = projects.filter((_, index) => index !== mainProjectIndex);
 
   let visibleOtherProject = $state(2);
@@ -17,8 +17,6 @@
     visibleOtherProject += 2;
   }
 </script>
-
-
 
 <section class="mt-l">
   <SectionHeadline sectionName="my-work">My Work</SectionHeadline>
@@ -36,12 +34,13 @@
               <p class="company dark-grey">{mainProject.company}</p>
             {/if}
           </div>
-          <span class="btn-to-article">→</span>
+          <span class="btn-to-article">
+            <Icon icon="line-md:arrow-right" width={28} />
+          </span>
         </div>
       </a>
     </article>
 
-   
     <div class="projects-grid">
       {#each otherProjects.slice(0, visibleOtherProject) as project (project.slug)}
         <article class="project fade-in">
@@ -56,7 +55,9 @@
                   <p class="company dark-grey">{project.company}</p>
                 {/if}
               </div>
-              <span class="btn-to-article">→</span>
+              <span class="btn-to-article">
+                <Icon icon="line-md:arrow-right" width={28} />
+              </span>
             </div>
           </a>
         </article>
@@ -71,23 +72,21 @@
   </div>
 </section>
 
-
-
 <style>
   @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.fade-in {
-  animation: fadeInUp 0.5s ease forwards;
-}
+  .fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+  }
 
   .projects-container {
     display: flex;

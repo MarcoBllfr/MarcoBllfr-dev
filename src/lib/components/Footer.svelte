@@ -7,12 +7,12 @@
     <h3 class="semi-bold mb-xs">Marco</h3>
     <div class="mb-l social-links">
       <a
-        href="/"
+        href="https://github.com/MarcoBllfr"
         target="_blank"
         class="footer-link">GitHub</a
       >
       <a
-        href="/"
+        href="www.linkedin.com/in/marcobllfr"
         target="_blank"
         class="footer-link">LinkedIn</a
       >

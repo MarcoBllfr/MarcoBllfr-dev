@@ -15,19 +15,21 @@
 </script>
 
 {#snippet ButtonContent()}
-<div class="headline-container">
+<div class="headline-container fade-slide">
   <h2 class="headline-text">
     {isEducationRender ? "My Education Experience" : "My Work Experience"}
   </h2>
+  {#if workExperience.length > 0 }
   <Button className="headline-button" onclick={switchOnMyWorks}>
-      <p>{isEducationRender ? "Vedi esperienze lavorative →" : "Vedi studi →"}</p>
+      <p>{isEducationRender ? "Vedi esperienze lavorative" : "Vedi studi"}</p>
   </Button>
+  {/if}
 </div>
 {/snippet}
 
-<section class="default-margin work-experience mt-m">
+<section class="default-margin work-experience mt-m fade-slide">
   {#if isEducationRender}
-    <ul class="work-experience-list">
+    <ul class="work-experience-list fade-slide">
       {#each education as edu}
         <li class="work-item">
           <article>
@@ -50,11 +52,10 @@
         </li>
       {/each}
     </ul>
-   
-      {@render ButtonContent()}
     
+      {@render ButtonContent()}
   {:else}
-    <ul class="work-experience-list">
+    <ul class="work-experience-list fade-slide">
       {#each workExperience as job}
         <li class="work-item">
           <article>
@@ -81,6 +82,18 @@
 </section>
 
 <style>
+  .fade-slide {
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: fadeInSlide 0.5s ease-out forwards;
+}
+
+@keyframes fadeInSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
    .work-experience {
     display: flex;
     justify-content: space-between;
