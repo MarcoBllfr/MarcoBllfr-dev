@@ -28,11 +28,12 @@
     font-size: 20px;
     }
     .headline-button {
-    border: none;
-    padding: 0;
-    width: 100%;
-    transition: all 0.5s ease;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px 10px;
+}
   
   .headline-button:hover {
     background-color: #ffffff;

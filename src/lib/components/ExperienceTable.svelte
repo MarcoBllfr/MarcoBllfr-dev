@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Button } from "$components";
+  import { fade } from 'svelte/transition';
   let isEducationRender: boolean = $state(true);
   
   function switchOnMyWorks() {
@@ -12,12 +13,14 @@
   }
   
   let { workExperience, education }: ExperienceTableProps = $props();
+  
+ 
 </script>
 
 {#snippet ButtonContent()}
-<div class="headline-container fade-slide">
-  <h2 class="headline-text">
-    {isEducationRender ? "My Education Experience" : "My Work Experience"}
+<div class="headline-container" in:fade >
+  <h2 class="headline-text mb-xs">
+    {isEducationRender ? "La mia formazione" : "Esperienze di lavoro"}
   </h2>
   {#if workExperience.length > 0 }
   <Button className="headline-button" onclick={switchOnMyWorks}>
@@ -27,9 +30,9 @@
 </div>
 {/snippet}
 
-<section class="default-margin work-experience mt-m fade-slide">
+<section class="default-margin work-experience mt-m " in:fade>
   {#if isEducationRender}
-    <ul class="work-experience-list fade-slide">
+    <ul class="work-experience-list" in:fade>
       {#each education as edu}
         <li class="work-item">
           <article>
@@ -53,9 +56,9 @@
       {/each}
     </ul>
     
-      {@render ButtonContent()}
+    {@render ButtonContent()}
   {:else}
-    <ul class="work-experience-list fade-slide">
+    <ul class="work-experience-list"  in:fade >
       {#each workExperience as job}
         <li class="work-item">
           <article>
@@ -82,7 +85,10 @@
 </section>
 
 <style>
-  .fade-slide {
+  .headline-button p {
+  margin: 0;
+}
+  /* .fade-slide {
   opacity: 0;
   transform: translateX(-30px);
   animation: fadeInSlide 0.5s ease-out forwards;
@@ -93,7 +99,7 @@
     opacity: 1;
     transform: translateX(0);
   }
-}
+} */
    .work-experience {
     display: flex;
     justify-content: space-between;
