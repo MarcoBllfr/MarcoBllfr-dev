@@ -85,4 +85,14 @@ function processProjectContent(content: RawTextContent | RawImgContent) {
 
     return processedImgContent;
   }
+
+}
+
+export function processAboutMe(
+  rawAboutMe: SanityAboutMe,
+  locale: 'it' | 'en'
+): string {
+  return locale === 'it' 
+    ? rawAboutMe.italianContent || ''
+    : rawAboutMe.englishContent || '';
 }

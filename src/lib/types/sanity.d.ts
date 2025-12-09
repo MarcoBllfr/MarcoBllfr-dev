@@ -113,3 +113,16 @@ interface Skill {
   iconClass: string
   _key: string
 }
+
+type SanityAboutMe = {
+  _id: string;
+  _type: "aboutMe";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  italianContent?: string;
+  englishContent?: string;
+};
+interface ProcessedAboutMe {
+  content: Array<ProcessedTextContent>;
+}

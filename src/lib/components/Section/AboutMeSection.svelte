@@ -1,53 +1,37 @@
 <script lang="ts">
-    import { Button, SectionHeadline, ExperienceTable } from "$components";
-    import image from "$assets/about-me.webp";
-    import { goto } from "$app/navigation";
-  
-    function onclick() {
-      goto("/#contact-form");
-    }
-  
-    interface AboutMeProps {
-      workExperience: SanityWorkExperience[];
-      education: SanityEducation[];
-    }
-  
-    let { workExperience, education }: AboutMeProps = $props();
-  </script>
-  
-  <section class="about-me mt-l">
-    <SectionHeadline sectionName={"about-me"}>About Me</SectionHeadline>
-  
-    <div class="mt-m content-container default-margin">
-      <div class="image-wrapper">
-        <img class="image" src={image} alt="Marco" />
-      </div>
-      <div class="text">
-        <p>
-          Ciao, sono <span class="important">Marco</span>, un <span class="important">web developer</span> con la passione per la tecnoligia e l'informatica.
-          Progetto siti web che uniscono <span class="important">funzionalità e design</span>, usando
-          alcuni framework come <span class="tech">Svelte</span> e <span class="tech">React</span>.
-        </p>
-        <p>
-          Il mio percorso e interesse nella programazzione sono iniziati gia alle superiori e spinto dal desiderio di
-          <span class="important">crescita continua</span> ho iniziato a studiare da vari
-          linguaggi e <span class="important">framework</span>.
-        </p>
-        <p>
-          Nel tempo libero esploro la stampa 3D, un hobby che mi permette di unire
-          tecnologia e creatività, e che ha affinato la mia attenzione ai dettagli.
-        </p>
-        <p>
-          In questo portfolio troverai i miei <span class="important">progetti più rilevanti</span> e una panoramica delle mie
-          competenze tecniche. Sono sempre aperto a <em>nuove sfide</em> e collaborazioni!
-        </p>
-        <Button className="mt-m" {onclick}>Contattami</Button>
-      </div>
+  import { Button, SectionHeadline, ExperienceTable } from "$components";
+  import image from "$assets/about-me.webp";
+  import { goto } from "$app/navigation";
+
+  function onclick() {
+    goto("/#contact-form");
+  }
+
+  interface AboutMeProps {
+    workExperience: SanityWorkExperience[];
+    education: SanityEducation[];
+    aboutMe: string; // Ora è una stringa HTML
+  }
+
+  let { workExperience, education, aboutMe }: AboutMeProps = $props();
+</script>
+
+<section class="about-me mt-l">
+  <SectionHeadline sectionName={"about-me"}>About Me</SectionHeadline>
+
+  <div class="mt-m content-container default-margin">
+    <div class="image-wrapper">
+      <img class="image" src={image} alt="Marco" />
     </div>
-  
-    <ExperienceTable {workExperience} {education} />
-  </section>
-  
+    <div class="text">
+      {@html aboutMe}  
+      
+      <Button className="mt-m" {onclick}>Contattami</Button>
+    </div>
+  </div>
+
+  <ExperienceTable {workExperience} {education} />
+</section>
   <style>
     .content-container {
       display: flex;

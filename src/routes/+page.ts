@@ -1,4 +1,4 @@
-import sanityClient, { processProjectEntries } from "$lib/utils/sanity";
+import sanityClient, { processProjectEntries, processAboutMe } from "$lib/utils/sanity";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async () => {
@@ -6,8 +6,8 @@ export const load: PageLoad = async () => {
     '*[_type == "devExperience"] | order(startDate desc)'
   );
 
-  const rawProject:SanityProject[]= await sanityClient.fetch(
-    '*[_type == "project"] | order(dateAccomplished desc) '
+  const rawProject: SanityProject[] = await sanityClient.fetch(
+    '*[_type == "project"] | order(dateAccomplished desc)'
   );
 
   const skills: Skill[] = await sanityClient.fetch(
@@ -17,16 +17,23 @@ export const load: PageLoad = async () => {
   const education: SanityEducation[] = await sanityClient.fetch(
     '*[_type == "education"] | order(startDate desc)'
   );
+
   
-  const projects=rawProject.map(processProjectEntries);
- 
+  const rawAboutMe: SanityAboutMe = await sanityClient.fetch(
+    '*[_type == "aboutMe"][0]'
+  );
+  
+  const projects = rawProject.map(processProjectEntries);
+  
+
+  const locale: 'it' | 'en' = 'it'; 
+  const aboutMe = processAboutMe(rawAboutMe, locale);
 
   return {
     workExperience,
     projects,
     skills,
     education,
+    aboutMe, 
   };
 };
-
-
