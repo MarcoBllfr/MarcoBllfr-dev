@@ -4,7 +4,7 @@
   import { goto } from "$app/navigation";
   import { language } from '$lib/stores/storage';
   import sanityClient, { processAboutMe } from "$lib/utils/sanity";
-  
+  import Icon from '@iconify/svelte';
   function onclick() {
     goto("/#contact-form");
   }
@@ -31,10 +31,27 @@
     <div class="image-wrapper">
       <img class="image" src={image} alt="Marco" />
     </div>
+    
     <div class="text">
-      <button onclick={toggleLanguage}>
-        {$language === 'it' ? 'IT' : 'EN'}
-      </button>
+<div class="language-switch-container">
+  <button 
+    class="language-switch" 
+    class:active={$language === 'it'}
+    onclick={toggleLanguage}
+  >
+    <Icon icon="twemoji:flag-italy" width="24" />
+    <span>IT</span>
+  </button>
+  <div class="switch-divider"></div>
+  <button 
+    class="language-switch" 
+    class:active={$language === 'en'}
+    onclick={toggleLanguage}
+  >
+    <Icon icon="twemoji:flag-united-kingdom" width="24" />
+    <span>EN</span>
+  </button>
+</div>
       {@html aboutMe}  
       
       <Button className="mt-m" {onclick}>Contattami</Button>
@@ -44,6 +61,48 @@
   <ExperienceTable {workExperience} {education} />
 </section>
   <style>
+
+.language-switch-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--card-bg-color);
+  border-radius: 12px;
+  padding: 4px;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+}
+
+.language-switch:hover {
+  background: var(--hover-color);
+}
+
+.language-switch.active {
+  background: var(--background-color);
+  color: #ff3e00;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.switch-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-color);
+}
     .content-container {
       display: flex;
       flex-direction: row;
@@ -98,6 +157,15 @@
     }
   
     @media (max-width: 768px) {
+       .language-switch-container {
+    margin: 0 auto 1.5rem;
+  }
+
+  .language-switch {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
       .content-container {
         flex-direction: row;
         gap: 2rem;
@@ -117,9 +185,16 @@
       .text p {
         text-align: justify;
       }
-    }
+    
   
     @media (max-width: 480px) {
+      .language-switch span {
+    display: none;
+  }
+
+  .language-switch {
+    padding: 0.4rem;
+  }
       .text {
         font-size: 0.9rem;
       }
