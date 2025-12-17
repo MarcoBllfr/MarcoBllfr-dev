@@ -1,5 +1,7 @@
 import sanityClient, { processProjectEntries, processAboutMe } from "$lib/utils/sanity";
 import type { PageLoad } from "./$types";
+import { get } from 'svelte/store';
+import { language } from '$lib/stores/storage';
 
 export const load: PageLoad = async () => {
   const workExperience: SanityWorkExperience[] = await sanityClient.fetch(
@@ -26,7 +28,7 @@ export const load: PageLoad = async () => {
   const projects = rawProject.map(processProjectEntries);
   
 
-  const locale: 'it' | 'en' = 'it'; 
+  const locale =get(language);
   const aboutMe = processAboutMe(rawAboutMe, locale);
 
   return {

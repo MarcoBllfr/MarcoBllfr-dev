@@ -2,6 +2,7 @@ import { createClient, type ClientConfig } from "@sanity/client";
 import { PUBLIC_PROJECTID } from "$env/static/public";
 import ImageUrlBuilder from "@sanity/image-url";
 
+
 const config: ClientConfig = {
   projectId: PUBLIC_PROJECTID,
   dataset: "production",
@@ -88,7 +89,9 @@ function processProjectContent(content: RawTextContent | RawImgContent) {
 
 }
 
+
 export function processAboutMe(
+  
   rawAboutMe: SanityAboutMe,
   locale: 'it' | 'en'
 ): string {

@@ -2,6 +2,7 @@
   import { Button, SectionHeadline, ExperienceTable } from "$components";
   import image from "$assets/about-me.webp";
   import { goto } from "$app/navigation";
+  
 
   function onclick() {
     goto("/#contact-form");
@@ -14,6 +15,7 @@
   }
 
   let { workExperience, education, aboutMe }: AboutMeProps = $props();
+
 </script>
 
 <section class="about-me mt-l">
@@ -24,6 +26,7 @@
       <img class="image" src={image} alt="Marco" />
     </div>
     <div class="text">
+
       {@html aboutMe}  
       
       <Button className="mt-m" {onclick}>Contattami</Button>
