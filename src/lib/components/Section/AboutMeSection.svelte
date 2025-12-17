@@ -2,8 +2,9 @@
   import { Button, SectionHeadline, ExperienceTable } from "$components";
   import image from "$assets/about-me.webp";
   import { goto } from "$app/navigation";
+  import { language } from '$lib/stores/storage';
+  import sanityClient, { processAboutMe } from "$lib/utils/sanity";
   
-
   function onclick() {
     goto("/#contact-form");
   }
@@ -11,28 +12,35 @@
   interface AboutMeProps {
     workExperience: SanityWorkExperience[];
     education: SanityEducation[];
-    aboutMe: string; // Ora è una stringa HTML
+    rawAboutMe: SanityAboutMe; 
   }
 
-  let { workExperience, education, aboutMe }: AboutMeProps = $props();
+  let { workExperience, education, rawAboutMe }: AboutMeProps = $props();
 
+  
+  let aboutMe = $derived(processAboutMe(rawAboutMe, $language));
+
+  function toggleLanguage() {
+    language.set($language === 'it' ? 'en' : 'it');
+  }
 </script>
 
 <section class="about-me mt-l">
   <SectionHeadline sectionName={"about-me"}>About Me</SectionHeadline>
-
   <div class="mt-m content-container default-margin">
     <div class="image-wrapper">
       <img class="image" src={image} alt="Marco" />
     </div>
     <div class="text">
-
+      <button onclick={toggleLanguage}>
+        {$language === 'it' ? 'IT' : 'EN'}
+      </button>
       {@html aboutMe}  
       
       <Button className="mt-m" {onclick}>Contattami</Button>
     </div>
   </div>
-
+  
   <ExperienceTable {workExperience} {education} />
 </section>
   <style>

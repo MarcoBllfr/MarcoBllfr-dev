@@ -1,8 +1,8 @@
 import { createClient, type ClientConfig } from "@sanity/client";
 import { PUBLIC_PROJECTID } from "$env/static/public";
 import ImageUrlBuilder from "@sanity/image-url";
-
-
+import { language } from '$lib/stores/storage';
+import { get } from 'svelte/store';
 const config: ClientConfig = {
   projectId: PUBLIC_PROJECTID,
   dataset: "production",
@@ -93,7 +93,7 @@ function processProjectContent(content: RawTextContent | RawImgContent) {
 export function processAboutMe(
   
   rawAboutMe: SanityAboutMe,
-  locale: 'it' | 'en'
+   locale =get(language)
 ): string {
   return locale === 'it' 
     ? rawAboutMe.italianContent || ''

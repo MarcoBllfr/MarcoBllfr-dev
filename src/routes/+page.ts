@@ -36,6 +36,6 @@ export const load: PageLoad = async () => {
     projects,
     skills,
     education,
-    aboutMe, 
+    rawAboutMe, 
   };
 };
