@@ -4,6 +4,7 @@
 @import '@skeletonlabs/skeleton-svelte'; 
 @import '@skeletonlabs/skeleton/themes/nouveau';
 
+
 [data-theme='nouveau'] {
 	--text-scaling: 1.067;
 	--base-font-color: var(--color-surface-950);
