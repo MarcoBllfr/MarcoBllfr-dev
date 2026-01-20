@@ -70,6 +70,7 @@
 <section
   class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
 >
+<SectionHeadline sectionName="about-me">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
     <div class="space-y-6 lg:space-y-8 order-2 lg:order-1">
       <div class="flex flex-wrap items-center gap-3">
@@ -277,6 +278,7 @@
   <div class="mt-16 lg:mt-24">
     <ExperienceTable {workExperience} {education} />
   </div>
+  </SectionHeadline>
 </section>
 
 <style>
