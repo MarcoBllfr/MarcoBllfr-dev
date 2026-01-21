@@ -13,10 +13,10 @@
      
        <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
         <div class="inline-flex items-center gap-2 mb-2">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-tertiary-500 flex items-center justify-center">
+          <div class="w-8 h-8 rounded-lg bg-linear-to-br from-primary-500 to-tertiary-500 flex items-center justify-center">
             <Icon icon="mdi:code-braces" width="18" class="text-surface-950" />
           </div>
-          <h3 class="text-2xl font-bold bg-gradient-to-r from-primary-400 to-tertiary-400 bg-clip-text text-transparent">
+          <h3 class="text-2xl font-bold bg-linear-to-r from-primary-400 to-tertiary-400 bg-clip-text text-transparent">
             Marco
           </h3>
         </div>
@@ -67,7 +67,7 @@
             class="group relative"
             aria-label="GitHub"
           >
-            <div class="absolute -inset-2 bg-gradient-to-br from-primary-500/30 to-tertiary-500/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div class="absolute -inset-2 bg-linear-to-br from-primary-500/30 to-tertiary-500/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
             <div class="relative w-12 h-12 rounded-xl bg-surface-900/50 backdrop-blur-sm border border-surface-800 group-hover:border-primary-500/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
               <Icon icon="mdi:github" width="24" class="text-surface-400 group-hover:text-primary-400 transition-colors" />
             </div>
@@ -79,7 +79,7 @@
             class="group relative"
             aria-label="LinkedIn"
           >
-            <div class="absolute -inset-2 bg-gradient-to-br from-tertiary-500/30 to-success-500/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div class="absolute -inset-2 bg-linear-to-br from-tertiary-500/30 to-success-500/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
             <div class="relative w-12 h-12 rounded-xl bg-surface-900/50 backdrop-blur-sm border border-surface-800 group-hover:border-tertiary-500/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
               <Icon icon="mdi:linkedin" width="24" class="text-surface-400 group-hover:text-tertiary-400 transition-colors" />
             </div>
@@ -91,7 +91,7 @@
             class="group relative"
             aria-label="Email"
           >
-            <div class="absolute -inset-2 bg-gradient-to-br from-success-500/30 to-primary-500/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div class="absolute -inset-2 bg-linear-to-br from-success-500/30 to-primary-500/30 rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
             <div class="relative w-12 h-12 rounded-xl bg-surface-900/50 backdrop-blur-sm border border-surface-800 group-hover:border-success-500/50 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
               <Icon icon="mdi:email-outline" width="24" class="text-surface-400 group-hover:text-success-400 transition-colors" />
             </div>
@@ -101,7 +101,7 @@
     </div>
 
    
-    <div class="relative h-px bg-gradient-to-r from-transparent via-surface-800/30 to-transparent mb-8"></div>
+    <div class="relative h-px bg-linear-to-r from-transparent via-surface-800/30 to-transparent mb-8"></div>
 
     
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">

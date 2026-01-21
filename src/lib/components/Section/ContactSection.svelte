@@ -6,20 +6,20 @@
 <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
    <SectionHeadline sectionName="contact-form">
   <div
-    class="absolute inset-0 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent pointer-events-none"
+    class="absolute inset-0 bg-linear-to-b from-transparent via-primary-500/5 to-transparent pointer-events-none"
   ></div>
 
   <div class="max-w-6xl mx-auto relative">
     <div class="text-center mb-16">
       <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4">
         <span
-          class="bg-gradient-to-r from-primary-400 via-tertiary-400 to-success-400 bg-clip-text text-transparent"
+          class="bg-linear-to-r from-primary-400 via-tertiary-400 to-success-400 bg-clip-text text-transparent"
         >
           Contatti
         </span>
       </h2>
       <div
-        class="h-1 w-32 bg-gradient-to-r from-primary-500 to-success-500 mx-auto mb-6"
+        class="h-1 w-32 bg-linear-to-r from-primary-500 to-success-500 mx-auto mb-6"
       ></div>
 
       <p class="text-surface-400 max-w-2xl mx-auto font-mono text-sm">
@@ -33,7 +33,7 @@
         class="group relative contact-card"
       >
         <div
-          class="absolute -inset-0.5 bg-gradient-to-br from-primary-500 to-tertiary-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"
+          class="absolute -inset-0.5 bg-linear-to-br from-primary-500 to-tertiary-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"
         ></div>
 
         <div
@@ -75,7 +75,7 @@
         class="group relative contact-card"
       >
         <div
-          class="absolute -inset-0.5 bg-gradient-to-br from-tertiary-500 to-success-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"
+          class="absolute -inset-0.5 bg-linear-to-br from-tertiary-500 to-success-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"
         ></div>
 
         <div
@@ -118,7 +118,7 @@
         class="group relative contact-card"
       >
         <div
-          class="absolute -inset-0.5 bg-gradient-to-br from-success-500 to-primary-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"
+          class="absolute -inset-0.5 bg-linear-to-br from-success-500 to-primary-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"
         ></div>
 
         <div

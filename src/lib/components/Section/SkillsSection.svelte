@@ -10,7 +10,7 @@
 
 <section class="w-full flex flex-col items-center">
   <div
-    class="absolute inset-0 bg-gradient-to-b from-transparent via-tertiary-500/5 to-transparent pointer-events-none"
+    class="absolute inset-0 bg-linear-to-b from-transparent via-tertiary-500/5 to-transparent pointer-events-none"
   ></div>
 
   <div class="max-w-7xl mx-auto relative">
@@ -24,13 +24,13 @@
 
       <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4">
         <span
-          class="bg-gradient-to-r from-tertiary-400 via-primary-400 to-success-400 bg-clip-text text-transparent"
+          class="bg-linear-to-r from-tertiary-400 via-primary-400 to-success-400 bg-clip-text text-transparent"
         >
           Skills
         </span>
       </h2>
       <div
-        class="h-1 w-32 bg-gradient-to-r from-tertiary-500 to-success-500 mx-auto mb-6"
+        class="h-1 w-32 bg-linear-to-r from-tertiary-500 to-success-500 mx-auto mb-6"
       ></div>
 
       <p class="text-surface-400 max-w-2xl mx-auto font-mono text-sm">
@@ -57,7 +57,7 @@
             tabindex="0"
           >
             <div
-              class="absolute -inset-1 bg-gradient-to-br from-tertiary-500/30 via-primary-500/30 to-success-500/30 rounded-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 blur-xl transition duration-500"
+              class="absolute -inset-1 bg-linear-to-br from-tertiary-500/30 via-primary-500/30 to-success-500/30 rounded-2xl opacity-0 group-hover:opacity-100 group-active:opacity-100 blur-xl transition duration-500"
             ></div>
 
             <div

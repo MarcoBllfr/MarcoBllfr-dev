@@ -61,7 +61,7 @@
 
   <div class="relative">
     <div
-      class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-tertiary-500 to-success-500 transform -translate-x-1/2"
+      class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary-500 via-tertiary-500 to-success-500 transform -translate-x-1/2"
     ></div>
 
     {#if !isEducationRender}
@@ -107,7 +107,7 @@
               
               <div class="relative group">
                 <div
-                  class="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-tertiary-500 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-300"
+                  class="absolute -inset-0.5 bg-linear-to-r from-primary-500 to-tertiary-500 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-300"
                 ></div>
                 <div
                   class="relative bg-surface-900/70 backdrop-blur-md border border-surface-800 rounded-xl p-6 hover:border-primary-500/50 transition-all duration-300"
@@ -215,7 +215,7 @@
 
               <div class="relative group">
                 <div
-                  class="absolute -inset-0.5 bg-gradient-to-r from-success-500 to-tertiary-500 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-300"
+                  class="absolute -inset-0.5 bg-linear-to-r from-success-500 to-tertiary-500 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-300"
                 ></div>
                 <div
                   class="relative bg-surface-900/70 backdrop-blur-md border border-surface-800 rounded-xl p-6 hover:border-success-500/50 transition-all duration-300"

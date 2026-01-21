@@ -31,10 +31,10 @@
           <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-surface-50 mb-2">
             MIEI
           </h2>
-          <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-primary-400 via-tertiary-400 to-success-400 bg-clip-text text-transparent">
+          <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold bg-linear-to-r from-primary-400 via-tertiary-400 to-success-400 bg-clip-text text-transparent">
             PROGETTI
           </h2>
-          <div class="h-1 w-40 bg-gradient-to-r from-primary-500 to-success-500 mt-2"></div>
+          <div class="h-1 w-40 bg-linear-to-r from-primary-500 to-success-500 mt-2"></div>
         </div>
 
         <div class="text-right">
@@ -56,7 +56,7 @@
           style={`--index:${index}`}
         >
           
-          <div class="absolute -inset-0.5 bg-gradient-to-br from-primary-500 via-tertiary-500 to-success-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"></div>
+          <div class="absolute -inset-0.5 bg-linear-to-br from-primary-500 via-tertiary-500 to-success-500 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"></div>
 
           
           <div class="relative h-full bg-surface-900/90 backdrop-blur-md border border-surface-800 rounded-2xl overflow-hidden group-hover:border-primary-500/50 transition-all duration-300">
@@ -71,7 +71,7 @@
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
-              <div class="absolute inset-0 bg-gradient-to-t from-surface-900 via-surface-900/40 to-transparent"></div>
+              <div class="absolute inset-0 bg-linear-to-t from-surface-900 via-surface-900/40 to-transparent"></div>
 
               <div class="absolute top-4 right-4 px-2 py-1 bg-surface-900/80 backdrop-blur-sm border border-primary-500/30 rounded text-primary-400 text-xs font-mono">
                 v{index + 1}.0

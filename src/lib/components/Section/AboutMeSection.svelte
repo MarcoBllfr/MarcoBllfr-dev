@@ -151,7 +151,7 @@
       font-mono text-sm sm:text-base font-semibold
       text-white
 
-      bg-gradient-to-r from-tertiary-500 to-purple-500
+      bg-linear-to-r from-tertiary-500 to-purple-500
 
       shadow-[5px_5px_0_var(--color-success-500)]
       transition-all duration-300 ease-out
@@ -225,13 +225,13 @@
       <div class="relative">
         <div
           class="absolute inset-0 -m-16 sm:-m-20 lg:-m-24
-                 rounded-full bg-gradient-to-br from-primary-500/20 via-tertiary-500/20 to-secondary-500/20
+                 rounded-full bg-linear-to-br from-primary-500/20 via-tertiary-500/20 to-secondary-500/20
                  blur-3xl opacity-75 pointer-events-none"
         ></div>
 
         <div class="relative">
           <div
-            class="p-1 rounded-full bg-gradient-to-br from-primary-500 via-tertiary-500 to-secondary-500 shadow-2xl"
+            class="p-1 rounded-full bg-linear-to-br from-primary-500 via-tertiary-500 to-secondary-500 shadow-2xl"
           >
             <img
               src={image}
