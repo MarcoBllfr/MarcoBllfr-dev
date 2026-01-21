@@ -32,7 +32,7 @@
 
 <main class="min-h-screen bg-surface-950 text-surface-50">
   <section class="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 via-transparent to-transparent pointer-events-none"></div>
+    <div class="absolute inset-0 bg-linear-to-b from-primary-500/10 via-transparent to-transparent pointer-events-none"></div>
     
     <div class="max-w-6xl mx-auto relative">
       <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-400 text-xs font-mono mb-6">
@@ -41,11 +41,10 @@
       </div>
 
       <div class="absolute top-0 right-0 text-right space-y-1">
-        <p class="text-xs font-mono text-surface-500">const projectID = <span class="text-success-400">"{name.toLowerCase().replace(/\s+/g, '_')}"</span>;</p>
         {#if company}
           <p class="text-xs font-mono text-surface-500">client_id: <span class="text-tertiary-400">{company}</span></p>
         {/if}
-        <p class="text-xs font-mono text-surface-500">time_stamp: <span class="text-surface-400">{dateAccomplished}</span></p>
+        <p class="text-xm font-mono text-surface-500">Data: <span class="text-surface-400">{dateAccomplished}</span></p>
       </div>
 
       <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-400 text-xs font-mono mb-6">
@@ -58,12 +57,12 @@
           <span class="text-surface-50">{name.split(' ')[0]}</span>
           {#if name.split(' ').length > 1}
             <br>
-            <span class="bg-gradient-to-r from-success-400 to-tertiary-400 bg-clip-text text-transparent">
+            <span class="bg-linear-to-r from-success-400 to-tertiary-400 bg-clip-text text-transparent">
               [{name.split(' ').slice(1).join(' ')}]
             </span>
           {/if}
         </h1>
-        <div class="h-1 w-32 bg-gradient-to-r from-primary-500 to-success-500"></div>
+        <div class="h-1 w-32 bg-linear-to-r from-primary-500 to-success-500"></div>
       </div>
 
       <div class="relative max-w-2xl">
@@ -89,12 +88,9 @@
   <section class="px-4 sm:px-6 lg:px-8 mb-16">
     <div class="max-w-6xl mx-auto">
       <div class="relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-primary-500 via-tertiary-500 to-success-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+        <div class="absolute -inset-1 bg-linear-to-r from-primary-500 via-tertiary-500 to-success-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
         <div class="relative overflow-hidden rounded-2xl border-2 border-primary-500/30">
-          <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 bg-surface-900/80 backdrop-blur border border-success-500/30 rounded-full text-success-400 text-xs font-mono z-10">
-            <div class="w-2 h-2 rounded-full bg-success-400 animate-pulse"></div>
-            <span>LIVE_DEMO_AVAILABLE</span>
-          </div>
+          
           <img src={pojectImageUrl} alt="{name} project" class="w-full object-cover" />
         </div>
       </div>

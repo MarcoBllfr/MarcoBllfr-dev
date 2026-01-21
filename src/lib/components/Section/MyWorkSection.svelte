@@ -17,9 +17,8 @@
   
 </script>
 
+<SectionHeadline sectionName="my-work">
 <section class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-  <SectionHeadline sectionName="my-work">
-    <!-- HEADER -->
     <div class="mb-16">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-400 text-xs font-mono mb-4">
         <Icon icon="mdi:database-sync" width="14" />
@@ -28,9 +27,7 @@
 
       <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-surface-50 mb-2">
-            MIEI
-          </h2>
+          
           <h2 class="text-5xl sm:text-6xl lg:text-7xl font-bold bg-linear-to-r from-primary-400 via-tertiary-400 to-success-400 bg-clip-text text-transparent">
             PROGETTI
           </h2>
@@ -73,16 +70,8 @@
 
               <div class="absolute inset-0 bg-linear-to-t from-surface-900 via-surface-900/40 to-transparent"></div>
 
-              <div class="absolute top-4 right-4 px-2 py-1 bg-surface-900/80 backdrop-blur-sm border border-primary-500/30 rounded text-primary-400 text-xs font-mono">
-                v{index + 1}.0
-              </div>
+            
 
-              {#if index === 0}
-                <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 bg-success-500/20 backdrop-blur-sm border border-success-500/30 rounded-full text-success-400 text-xs font-mono">
-                  <div class="w-2 h-2 rounded-full bg-success-400 animate-pulse"></div>
-                  <span>LIVE</span>
-                </div>
-              {/if}
             </div>
 
             
@@ -147,8 +136,8 @@
         </button>
       </div>
     {/if}
-  </SectionHeadline>
 </section>
+ </SectionHeadline>
 
 <style>
   .project-card {

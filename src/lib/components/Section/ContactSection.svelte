@@ -3,8 +3,9 @@
   import Icon from "@iconify/svelte";
 </script>
 
+ <SectionHeadline sectionName="contact-form">
 <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-   <SectionHeadline sectionName="contact-form">
+  
   <div
     class="absolute inset-0 bg-linear-to-b from-transparent via-primary-500/5 to-transparent pointer-events-none"
   ></div>
@@ -166,9 +167,8 @@
       </div>
     </div>
   </div>
-  </SectionHeadline>
 </section>
-
+ </SectionHeadline>
 <style>
   .contact-card {
     animation: fadeSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
