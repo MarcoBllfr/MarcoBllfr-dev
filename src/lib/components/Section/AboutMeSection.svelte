@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { get } from 'svelte/store';
   import { Button, SectionHeadline, ExperienceTable } from "$components";
   import image from "$assets/about-me.webp";
   import { goto } from "$app/navigation";
@@ -22,11 +23,16 @@
   }
 
   let { workExperience, education, rawAboutMe }: AboutMeProps = $props();
-
-  let aboutMe = $derived(processAboutMe(rawAboutMe, $language));
+let aboutMe = $derived(rawAboutMe.italianContent);
+  //let aboutMe = $derived(processAboutMe(rawAboutMe, $language));
 
   function toggleLanguage() {
     language.set($language === "it" ? "en" : "it");
+     if ($language === "it"){
+      aboutMe=rawAboutMe.italianContent
+    }else{
+      aboutMe=rawAboutMe.englishContent
+    }
   }
 
   //effetto scrittura
@@ -36,6 +42,11 @@
   let isDeleting = $state(false);
 
   onMount(() => {
+    if ($language === "it"){
+      aboutMe=rawAboutMe.italianContent
+    }else{
+      aboutMe=rawAboutMe.englishContent
+    }
     function type() {
       const currentRole = roles[currentRoleIndex];
 
