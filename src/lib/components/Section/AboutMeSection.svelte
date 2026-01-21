@@ -3,7 +3,7 @@
   import image from "$assets/about-me.webp";
   import { goto } from "$app/navigation";
   import { language } from "$lib/stores/storage";
-  import sanityClient, { processAboutMe } from "$lib/utils/sanity";
+  import { processAboutMe } from "$lib/utils/sanity";
   import Icon from "@iconify/svelte";
   import { onMount } from "svelte";
 
@@ -30,7 +30,7 @@
   }
 
   //effetto scrittura
-  const roles = ["Web Developer", "Svelte", "React"];
+  const roles = ["Web Developer", "Svelte Dev", "React Dev"];
   let currentRoleIndex = $state(0);
   let displayedText = $state("");
   let isDeleting = $state(false);
@@ -42,7 +42,7 @@
       if (!isDeleting) {
         if (displayedText.length < currentRole.length) {
           displayedText = currentRole.slice(0, displayedText.length + 1);
-          setTimeout(type, 100); // Velocità
+          setTimeout(type, 150); // Velocità
         } else {
           setTimeout(() => {
             isDeleting = true;
@@ -121,12 +121,12 @@
 
       <div class="space-y-2">
         <h1
-          class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+          class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
         >
-          Marco
+          Marco Bellafiore
         </h1>
         <h1
-          class="text-3xl sm:text-5xl lg:text-4xl xl:text-6xl font-bold leading-tight text-primary-500 min-h-[1.2em]"
+          class="text-2xl sm:text-4xl lg:text-3xl xl:text-5xl font-bold leading-tight text-primary-500 min-h-[1.2em]"
         >
           {displayedText}<span class="animate-blink">|</span>
         </h1>
