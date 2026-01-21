@@ -1,168 +1,273 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-
-  let {data} = $props();
-  let {company, name, dateAccomplished, stack, pojectImageUrl, content} = data.project;
   
-  function getTagFromStyle(style : ProcessedTextContent["style"]): string {
-      if (style === "normal"){
-          return "p"
-      } else {
-          return style;
-      }
+  let { data } = $props();
+  let { company, name, dateAccomplished, stack, pojectImageUrl, content } = data.project;
+  
+  function getTagFromStyle(style: ProcessedTextContent["style"]): string {
+    if (style === "normal") {
+      return "p";
+    } else {
+      return style;
+    }
   }
-
+  
   let imageBlocks = content.filter(block => block.type === "image");
   let textBlocks = content.filter(block => block.type === "text");
   
-  let imagePairs = [];
-  for (let i = 0; i < imageBlocks.length; i += 2) {
-    if (i + 1 < imageBlocks.length) {
-      imagePairs.push([imageBlocks[i], imageBlocks[i + 1]]);
-    } else {
-      imagePairs.push([imageBlocks[i]]);
-    }
+  let currentImageIndex = $state(0);
+  
+  function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % imageBlocks.length;
+  }
+  
+  function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + imageBlocks.length) % imageBlocks.length;
+  }
+  
+  function goToImage(index: number) {
+    currentImageIndex = index;
   }
 </script>
 
-<main class="default-margin work-page">
-  <h4>{company}</h4>
-  <div class="underscore"></div>
-  <h2 class="mb-s">{name}</h2>
-  <img class="project-image" src={pojectImageUrl} alt="{name} project" />
-  
-  <div class="project-container mt-m">
-    <div class="meta-data">
-      <h3 class="semi-bold">Date</h3>
-      <p>{dateAccomplished.slice(0,7)}</p>
-      <h3 class="semi-bold mt-m">Tech Stack</h3>
-      <ul>
-        {#each stack as skill }
-          <li>{skill}</li>
-        {/each}
-      </ul>
-    </div>
+<main class="min-h-screen bg-surface-950 text-surface-50">
+  <section class="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 via-transparent to-transparent pointer-events-none"></div>
     
-    <div class="project-text">
-      {#each textBlocks as block}
-        <svelte:element this={getTagFromStyle(block.style)}>
-          {#each block.blocks as textBlock}
-            {#if textBlock.type === "link"}
-              <a href={textBlock.href} target="_blank" class="link">{textBlock.content}</a>
-            {:else}
-              {textBlock.content}
-            {/if}
-          {/each}
-        </svelte:element>
-      {/each}
-      
-      
-      
-      {#each imagePairs as pair}
-        <div class="image-row">
-          {#each pair as image}
-            <div class="image-container">
-              <img class="content-image" src={image.url} alt="Project detail" />
-            </div>
+    <div class="max-w-6xl mx-auto relative">
+      <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-400 text-xs font-mono mb-6">
+        <Icon icon="mdi:file-code" width="14" />
+        <span>// CURRENT_SESSION</span>
+      </div>
+
+      <div class="absolute top-0 right-0 text-right space-y-1">
+        <p class="text-xs font-mono text-surface-500">const projectID = <span class="text-success-400">"{name.toLowerCase().replace(/\s+/g, '_')}"</span>;</p>
+        {#if company}
+          <p class="text-xs font-mono text-surface-500">client_id: <span class="text-tertiary-400">{company}</span></p>
+        {/if}
+        <p class="text-xs font-mono text-surface-500">time_stamp: <span class="text-surface-400">{dateAccomplished}</span></p>
+      </div>
+
+      <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-400 text-xs font-mono mb-6">
+        <Icon icon="mdi:package-variant" width="16" />
+        <span>type: "WEB_APP"</span>
+      </div>
+
+      <div class="mb-8">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4">
+          <span class="text-surface-50">{name.split(' ')[0]}</span>
+          {#if name.split(' ').length > 1}
+            <br>
+            <span class="bg-gradient-to-r from-success-400 to-tertiary-400 bg-clip-text text-transparent">
+              [{name.split(' ').slice(1).join(' ')}]
+            </span>
+          {/if}
+        </h1>
+        <div class="h-1 w-32 bg-gradient-to-r from-primary-500 to-success-500"></div>
+      </div>
+
+      <div class="relative max-w-2xl">
+        <div class="pl-6 border-l-2 border-primary-500/30 space-y-2">
+          {#each textBlocks.slice(0, 1) as block}
+            <svelte:element this={getTagFromStyle(block.style)} class="text-surface-300 leading-relaxed">
+              {#each block.blocks as textBlock}
+                {#if textBlock.type === "link"}
+                  <a href={textBlock.href} target="_blank" class="text-primary-400 hover:text-primary-300 underline decoration-primary-500/30 hover:decoration-primary-500 transition-colors">
+                    {textBlock.content}
+                  </a>
+                {:else}
+                  {textBlock.content}
+                {/if}
+              {/each}
+            </svelte:element>
           {/each}
         </div>
-      {/each}
-      <div class="back-button-container">
-        <a href="/" class="back-button" aria-label="Back to home">
-          <Icon icon="line-md:arrow-left" width={28} />
-          <span>Torna alla home</span>
-        </a>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="px-4 sm:px-6 lg:px-8 mb-16">
+    <div class="max-w-6xl mx-auto">
+      <div class="relative group">
+        <div class="absolute -inset-1 bg-gradient-to-r from-primary-500 via-tertiary-500 to-success-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+        <div class="relative overflow-hidden rounded-2xl border-2 border-primary-500/30">
+          <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1 bg-surface-900/80 backdrop-blur border border-success-500/30 rounded-full text-success-400 text-xs font-mono z-10">
+            <div class="w-2 h-2 rounded-full bg-success-400 animate-pulse"></div>
+            <span>LIVE_DEMO_AVAILABLE</span>
+          </div>
+          <img src={pojectImageUrl} alt="{name} project" class="w-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 sm:px-6 lg:px-8 pb-20">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <aside class="lg:col-span-4 space-y-8">
+        <div class="flex items-center gap-2 text-xs font-mono text-surface-500 mb-6">
+          <Icon icon="mdi:code-braces" width="14" />
+          <span>// SECTION_01</span>
+        </div>
+
+        <div class="bg-surface-900/70 backdrop-blur-md border border-surface-800 rounded-xl p-6 sticky top-24">
+          <h3 class="text-sm font-bold text-surface-400 font-mono mb-4 flex items-center gap-2">
+            <Icon icon="mdi:code-tags" width="16" />
+            TECH_STACK
+          </h3>
+          <div class="space-y-2">
+            {#each stack as tech}
+              <div class="flex items-center gap-2 text-sm group/tech cursor-default">
+                <Icon icon="mdi:checkbox-marked-circle" width="16" class="text-success-400" />
+                <span class="text-surface-300 group-hover/tech:text-primary-400 transition-colors font-mono">{tech}</span>
+              </div>
+            {/each}
+          </div>
+        </div>
+      </aside>
+
+      <article class="lg:col-span-8 space-y-12">
+        <div class="space-y-6">
+          {#each textBlocks.slice(1) as block}
+            {#if block.style === 'h2'}
+              <h2 class="text-3xl font-bold text-surface-50 mb-4 mt-8">
+                {#each block.blocks as textBlock}
+                  {#if textBlock.type === "link"}
+                    <a href={textBlock.href} target="_blank" class="text-primary-400 hover:text-primary-300 underline decoration-primary-500/30 hover:decoration-primary-500 transition-colors">
+                      {textBlock.content}
+                    </a>
+                  {:else}
+                    {textBlock.content}
+                  {/if}
+                {/each}
+              </h2>
+            {:else if block.style === 'h3'}
+              <h3 class="text-2xl font-bold text-primary-400 mb-3 mt-6">
+                {#each block.blocks as textBlock}
+                  {#if textBlock.type === "link"}
+                    <a href={textBlock.href} target="_blank" class="text-primary-300 hover:text-primary-200 underline decoration-primary-500/30 hover:decoration-primary-500 transition-colors">
+                      {textBlock.content}
+                    </a>
+                  {:else}
+                    {textBlock.content}
+                  {/if}
+                {/each}
+              </h3>
+            {:else if block.style === 'h4'}
+              <h4 class="text-xl font-bold text-tertiary-400 mb-2 mt-4">
+                {#each block.blocks as textBlock}
+                  {#if textBlock.type === "link"}
+                    <a href={textBlock.href} target="_blank" class="text-tertiary-300 hover:text-tertiary-200 underline decoration-tertiary-500/30 hover:decoration-tertiary-500 transition-colors">
+                      {textBlock.content}
+                    </a>
+                  {:else}
+                    {textBlock.content}
+                  {/if}
+                {/each}
+              </h4>
+            {:else if block.style === 'blockquote'}
+              <blockquote class="border-l-4 border-primary-500 pl-4 italic text-surface-400 my-6">
+                {#each block.blocks as textBlock}
+                  {#if textBlock.type === "link"}
+                    <a href={textBlock.href} target="_blank" class="text-primary-400 hover:text-primary-300 underline decoration-primary-500/30 hover:decoration-primary-500 transition-colors">
+                      {textBlock.content}
+                    </a>
+                  {:else}
+                    {textBlock.content}
+                  {/if}
+                {/each}
+              </blockquote>
+            {:else}
+              <p class="text-surface-300 leading-relaxed mb-4">
+                {#each block.blocks as textBlock}
+                  {#if textBlock.type === "link"}
+                    <a href={textBlock.href} target="_blank" class="text-primary-400 hover:text-primary-300 underline decoration-primary-500/30 hover:decoration-primary-500 transition-colors">
+                      {textBlock.content}
+                    </a>
+                  {:else}
+                    {textBlock.content}
+                  {/if}
+                {/each}
+              </p>
+            {/if}
+          {/each}
+        </div>
+
+        {#if imageBlocks.length > 0}
+          <div class="relative group/carousel mt-12">
+            <div class="absolute -inset-0.5 bg-gradient-to-br from-primary-500/20 to-success-500/20 rounded-xl blur opacity-0 group-hover/carousel:opacity-100 transition duration-300"></div>
+            <div class="relative overflow-hidden rounded-xl border border-surface-800 group-hover/carousel:border-primary-500/50 transition-colors bg-surface-900/50">
+              <div class="relative aspect-video">
+                <img 
+                  src={imageBlocks[currentImageIndex].url} 
+                  alt="Project detail {currentImageIndex + 1}" 
+                  class="w-full h-full object-cover"
+                />
+                
+                {#if imageBlocks.length > 1}
+                  <button
+                    onclick={prevImage}
+                    class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-surface-900/80 backdrop-blur border border-surface-700 hover:border-primary-500/50 flex items-center justify-center text-surface-300 hover:text-primary-400 transition-all duration-300 hover:scale-110"
+                    aria-label="Immagine precedente"
+                  >
+                    <Icon icon="mdi:chevron-left" width="24" />
+                  </button>
+                  
+                  <button
+                    onclick={nextImage}
+                    class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-surface-900/80 backdrop-blur border border-surface-700 hover:border-primary-500/50 flex items-center justify-center text-surface-300 hover:text-primary-400 transition-all duration-300 hover:scale-110"
+                    aria-label="Immagine successiva"
+                  >
+                    <Icon icon="mdi:chevron-right" width="24" />
+                  </button>
+                  
+                  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 bg-surface-900/80 backdrop-blur border border-surface-700 rounded-full">
+                    {#each imageBlocks as _, index}
+                      <button
+                        onclick={() => goToImage(index)}
+                        class="w-2 h-2 rounded-full transition-all duration-300 {index === currentImageIndex ? 'bg-primary-400 w-6' : 'bg-surface-600 hover:bg-surface-400'}"
+                        aria-label="Vai all'immagine {index + 1}"
+                      ></button>
+                    {/each}
+                  </div>
+                  
+                  <div class="absolute top-4 right-4 px-3 py-1 bg-surface-900/80 backdrop-blur border border-surface-700 rounded-full text-surface-300 text-xs font-mono">
+                    {currentImageIndex + 1} / {imageBlocks.length}
+                  </div>
+                {/if}
+              </div>
+            </div>
+          </div>
+        {/if}
+      </article>
+    </div>
+  </section>
+
+  <section class="border-t border-surface-800 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex justify-center">
+      <a 
+        href="/"
+        class="group relative inline-flex items-center gap-3 px-8 py-4 overflow-hidden"
+      >
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-500 via-tertiary-500 to-success-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <div class="absolute inset-0 bg-surface-900/70 backdrop-blur-md border border-surface-800 rounded-xl group-hover:border-primary-500/50 transition-all duration-300"></div>
+        
+        <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        
+        <div class="relative flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-primary-500/10 border border-primary-500/30 flex items-center justify-center group-hover:bg-primary-500 group-hover:border-primary-400 transition-all duration-300">
+            <Icon icon="mdi:home" width="18" class="text-primary-400 group-hover:text-surface-950 transition-colors" />
+          </div>
+          
+          <div class="flex flex-col">
+            <span class="text-xs font-mono text-surface-500 group-hover:text-primary-400 transition-colors">cd ~</span>
+            <span class="font-semibold text-surface-200 group-hover:text-surface-50 transition-colors">Torna alla home</span>
+          </div>
+          
+          <Icon icon="mdi:arrow-right" width="20" class="text-primary-400 group-hover:translate-x-1 transition-transform ml-2" />
+        </div>
+      </a>
+    </div>
+  </section>
 </main>
-
-<style>
-  .work-page {
-    padding-top: 80px;
-    padding-bottom: 140px;
-  }
-
-  .project-image {
-    width: 100%;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .project-container {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 2rem; 
-  }
-
-  .meta-data {
-    min-width: 200px;
-    flex: 1 0 200px; 
-  }
-  
-  .project-text {
-    flex: 3 0 300px; 
-  }
-  
-  .image-row {
-    display: flex;
-    gap: 16px;
-    margin: 24px 0;
-    width: 100%;
-  }
-  
-  .image-container {
-    flex: 1;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .content-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    display: block;
-  }
-  
-  .image-container:hover .content-image {
-    transform: scale(1.02);
-  }
-  
-  .back-button-container {
-    margin: 24px 0;
-  }
-  
-  .back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid var(--accent-color);
-    border-radius: 30px;
-    transition: all 0.3s ease;
-  }
-  
-  .back-button:hover {
-    background-color: var(--accent-color);
-    color: var(--button-text-color);
-    transform: translateX(-5px);
-  }
-  
-  @media (max-width: 768px) {
-    .project-container {
-      flex-direction: column;
-    }
-    
-    .image-row {
-      gap: 12px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .image-row {
-      gap: 8px;
-    }
-  }
-</style>

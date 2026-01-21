@@ -8,6 +8,8 @@ type SanityWorkExperience = {
   company?: string;
   startDate?: string;
   endDate?: string;
+  descrizione?:string;
+  technologies?:string;
 };
 
 type SanityEducation = {
