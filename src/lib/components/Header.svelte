@@ -2,7 +2,7 @@
   import { Menu, Portal } from "@skeletonlabs/skeleton-svelte";
   import { DarkThemeButton } from "$components";
   import Icon from "@iconify/svelte";
-  import logo from "$assets/logo.png";
+  import logo from "$assets/logo.svg";
   import { goto } from "$app/navigation";
 </script>
 
