@@ -40,6 +40,7 @@
   <meta property="og:locale" content="it_IT">
   <meta property="og:locale:alternate" content="en_US">
 
+  <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:image" content={image}>
   <meta property="twitter:title" content={title}>
   <meta property="twitter:description" content={metadescription}>
