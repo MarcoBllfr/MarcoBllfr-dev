@@ -10,9 +10,9 @@
 
   function onclick(route: string) {
     if (route == "contattami") {
-      goto("/#contact-form");
+      goto("/contact-form");
     } else {
-      goto("/#my-work");
+      goto("/my-work");
     }
   }
 

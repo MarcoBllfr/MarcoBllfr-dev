@@ -26,6 +26,7 @@ export function processProjectEntries(rawProject: SanityProject) {
     slug: rawProject.slug,
     pojectImageUrl,
     content: rawProject.content.map(processProjectContent),
+    description: rawProject.description,
   };
   return processedProject;
 }

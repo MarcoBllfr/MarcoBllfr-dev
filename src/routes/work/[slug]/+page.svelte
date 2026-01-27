@@ -2,7 +2,8 @@
   import Icon from "@iconify/svelte";
   
   let { data } = $props();
-  let { company, name, dateAccomplished, stack, pojectImageUrl, content } = data.project;
+  let { company, name, dateAccomplished, stack, pojectImageUrl, content, description } = data.project;
+  let {title,image,metadescription} = data.meta;
   
   function getTagFromStyle(style: ProcessedTextContent["style"]): string {
     if (style === "normal") {
@@ -29,6 +30,15 @@
     currentImageIndex = index;
   }
 </script>
+<svelte:head>
+  <title>Marco {title}</title>
+  <meta name="description" content={metadescription}>
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={metadescription} />
+  <meta property="og:image" content={image} />
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_US">
+</svelte:head>
 
 <main class="min-h-screen bg-surface-950 text-surface-50">
   <section class="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
@@ -67,19 +77,7 @@
 
       <div class="relative max-w-2xl">
         <div class="pl-6 border-l-2 border-primary-500/30 space-y-2">
-          {#each textBlocks.slice(0, 1) as block}
-            <svelte:element this={getTagFromStyle(block.style)} class="text-surface-300 leading-relaxed">
-              {#each block.blocks as textBlock}
-                {#if textBlock.type === "link"}
-                  <a href={textBlock.href} target="_blank" class="text-primary-400 hover:text-primary-300 underline decoration-primary-500/30 hover:decoration-primary-500 transition-colors">
-                    {textBlock.content}
-                  </a>
-                {:else}
-                  {textBlock.content}
-                {/if}
-              {/each}
-            </svelte:element>
-          {/each}
+          <p class="text-surface-300 leading-relaxed">{description}</p>
         </div>
       </div>
     </div>
@@ -124,7 +122,7 @@
 
       <article class="lg:col-span-8 space-y-12">
         <div class="space-y-6">
-          {#each textBlocks.slice(1) as block}
+          {#each textBlocks as block}
             {#if block.style === 'h2'}
               <h2 class="text-3xl font-bold text-surface-50 mb-4 mt-8">
                 {#each block.blocks as textBlock}
@@ -191,7 +189,7 @@
 
         {#if imageBlocks.length > 0}
           <div class="relative group/carousel mt-12">
-            <div class="absolute -inset-0.5 bg-gradient-to-br from-primary-500/20 to-success-500/20 rounded-xl blur opacity-0 group-hover/carousel:opacity-100 transition duration-300"></div>
+            <div class="absolute -inset-0.5 bg-linear-to-br from-primary-500/20 to-success-500/20 rounded-xl blur opacity-0 group-hover/carousel:opacity-100 transition duration-300"></div>
             <div class="relative overflow-hidden rounded-xl border border-surface-800 group-hover/carousel:border-primary-500/50 transition-colors bg-surface-900/50">
               <div class="relative aspect-video">
                 <img 

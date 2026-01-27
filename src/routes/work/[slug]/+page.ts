@@ -13,5 +13,10 @@ if (rawProjects.length !== 1){
 const project = processProjectEntries(rawProjects[0]);
 return{
     project,
+      meta: {
+    title: project.name,
+    image:project.pojectImageUrl,
+    metadescription:project.description,
+  }
 }
 }

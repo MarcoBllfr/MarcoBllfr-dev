@@ -18,6 +18,7 @@
 </script>
 
 <SectionHeadline sectionName="my-work">
+  
 <section class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
     <div class="mb-16">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-400 text-xs font-mono mb-4">

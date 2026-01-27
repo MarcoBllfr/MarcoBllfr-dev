@@ -48,6 +48,7 @@ type SanityProject = {
   dateAccomplished: string;
   content: Array<RawTextContent | RawImgContent>;
   stack: Array<string>;
+  description?:string;
 };
 
 interface RawTextContent {
@@ -89,7 +90,8 @@ interface ProcessedProject {
   stack: string[];
   pojectImageUrl: string;
   slug: string;
-  content: Array<ProcessedTextContent|ProcessedImgContent>
+  content: Array<ProcessedTextContent|ProcessedImgContent>;
+  description?:string;
 };
 
 
