@@ -3,7 +3,7 @@
   
   let { data } = $props();
   let { company, name, dateAccomplished, stack, pojectImageUrl, content, description } = data.project;
-  let {title,image,metadescription} = data.meta;
+  let {title,image,metadescription,url} = data.meta;
   
   function getTagFromStyle(style: ProcessedTextContent["style"]): string {
     if (style === "normal") {
@@ -35,9 +35,15 @@
   <meta name="description" content={metadescription}>
   <meta property="og:title" content={title} />
   <meta property="og:description" content={metadescription} />
+  <meta property="og:url" content={url}>
   <meta property="og:image" content={image} />
   <meta property="og:locale" content="it_IT">
   <meta property="og:locale:alternate" content="en_US">
+
+  <meta property="twitter:image" content={image}>
+  <meta property="twitter:title" content={title}>
+  <meta property="twitter:description" content={metadescription}>
+  <meta property="og:site_name" content={title}>
 </svelte:head>
 
 <main class="min-h-screen bg-surface-950 text-surface-50">

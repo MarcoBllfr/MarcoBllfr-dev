@@ -11,12 +11,14 @@ if (rawProjects.length !== 1){
 }
 
 const project = processProjectEntries(rawProjects[0]);
+const projUrl = `https://www.marcobf.dev/work/${project.slug}`;//url del progetto
 return{
     project,
       meta: {
     title: project.name,
     image:project.pojectImageUrl,
     metadescription:project.description,
+    url:projUrl,
   }
 }
 }
