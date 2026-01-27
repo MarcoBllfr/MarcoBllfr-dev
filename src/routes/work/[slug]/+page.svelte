@@ -41,10 +41,10 @@
   <meta property="og:locale:alternate" content="en_US">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:image" content={image}>
-  <meta property="twitter:title" content={title}>
-  <meta property="twitter:description" content={metadescription}>
-  <meta property="og:site_name" content={title}>
+  <meta name="twitter:image" content={image}>
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={metadescription}>
+  <meta name="og:site_name" content={title}>
 </svelte:head>
 
 <main class="min-h-screen bg-surface-950 text-surface-50">
