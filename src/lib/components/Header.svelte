@@ -4,6 +4,21 @@
   import Icon from "@iconify/svelte";
   import logo from "$assets/logo.svg";
   import { goto } from "$app/navigation";
+  let { lang } = $props();
+
+  const navLinks = [
+    { id: "about-me", label: "About Me", icon: "mdi:account" },
+    { id: "my-work", label: "Work", icon: "mdi:briefcase" },
+    { id: "contact-form", label: "Contact", icon: "mdi:email-outline" },
+  ];
+
+  function handleScroll(e: Event, id: string) {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 </script>
 
 <nav
@@ -11,29 +26,21 @@
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
-      <a href="/" class="relative z-50">
+      <a href="/{lang}" class="relative z-50">
         <img src={logo} alt="Logo" class="w-16 sm:w-20 h-auto" />
       </a>
 
       <div class="hidden md:flex items-center gap-6">
-        <a href="/#about-me" class="nav-link nav-about flex items-center gap-2">
-          <Icon icon="mdi:account" width="18" />
-          About Me
-        </a>
-
-        <a href="/#my-work" class="nav-link nav-work flex items-center gap-2">
-          <Icon icon="mdi:briefcase" width="18" />
-          Work
-        </a>
-
-        <a
-          href="/#contact-form"
-          class="nav-link nav-contact flex items-center gap-2"
-        >
-          <Icon icon="mdi:email-outline" width="18" />
-          Contact
-        </a>
-
+        {#each navLinks as link}
+          <a
+            href="/{lang}"
+            onclick={(e) => handleScroll(e, link.id)}
+            class="nav-link flex items-center gap-2"
+          >
+            <Icon icon={link.icon} width="18" />
+            {link.label}
+          </a>
+        {/each}
         <DarkThemeButton />
       </div>
 
@@ -48,42 +55,18 @@
         <Portal>
           <Menu.Positioner>
             <Menu.Content
-              class="
-                mt-3
-                rounded-xl
-                backdrop-blur-2xl
-                bg-surface-900/40
-                border border-surface-800/50
-                shadow-xl
-                min-w-[220px]
-              "
+              class="mt-3 rounded-xl backdrop-blur-2xl bg-surface-900/40 border border-surface-800/50 shadow-xl min-w-[220px]"
             >
-              <Menu.Item
-                value="about"
-                onclick={() => goto("/#about-me")}
-                class="menu-item menu-about"
-              >
-                <Icon icon="mdi:account" width="18" />
-                <Menu.ItemText>About Me</Menu.ItemText>
-              </Menu.Item>
-
-              <Menu.Item
-                value="work"
-                onclick={() => goto("/#my-work")}
-                class="menu-item menu-work"
-              >
-                <Icon icon="mdi:briefcase" width="18" />
-                <Menu.ItemText>Work</Menu.ItemText>
-              </Menu.Item>
-
-              <Menu.Item
-                value="contact"
-                onclick={() => goto("#contact-form")}
-                class="menu-item menu-contact"
-              >
-                <Icon icon="mdi:email-outline" width="18" />
-                <Menu.ItemText>Contact</Menu.ItemText>
-              </Menu.Item>
+              {#each navLinks as link}
+                <Menu.Item
+                  value={link.id}
+                  onclick={(e) => handleScroll(e, link.id)}
+                  class="menu-item"
+                >
+                  <Icon icon={link.icon} width="18" />
+                  <Menu.ItemText>{link.label}</Menu.ItemText>
+                </Menu.Item>
+              {/each}
             </Menu.Content>
           </Menu.Positioner>
         </Portal>

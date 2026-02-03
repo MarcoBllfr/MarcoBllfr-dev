@@ -1,8 +1,7 @@
 import { createClient, type ClientConfig } from "@sanity/client";
 import { PUBLIC_PROJECTID } from "$env/static/public";
 import ImageUrlBuilder from "@sanity/image-url";
-import { language } from '$lib/stores/storage';
-import { get } from 'svelte/store';
+
 const config: ClientConfig = {
   projectId: PUBLIC_PROJECTID,
   dataset: "production",
@@ -14,22 +13,29 @@ const config: ClientConfig = {
 const sanityClient = createClient(config);
 export default sanityClient;
 
-export function processProjectEntries(rawProject: SanityProject) {
+export function processProjectEntries(
+  rawProject: SanityProject,
+  lang: 'it' | 'en' = 'it'
+): ProcessedProject {
   const builder = ImageUrlBuilder(sanityClient);
   const pojectImageUrl = builder.image(rawProject.image).url();
 
-  const processedProject: ProcessedProject = {
+  const localizedContent = rawProject.content?.[lang] || rawProject.content?.it || [];
+
+  const localizedDescription = rawProject.description?.[lang] || rawProject.description?.it || '';
+
+  return {
     name: rawProject.name,
     company: rawProject.company,
     dateAccomplished: rawProject.dateAccomplished,
     stack: rawProject.stack,
     slug: rawProject.slug,
     pojectImageUrl,
-    content: rawProject.content.map(processProjectContent),
-    description: rawProject.description,
+    content: localizedContent.map(processProjectContent),
+    description: localizedDescription, 
   };
-  return processedProject;
 }
+
 
 function processProjectContent(content: RawTextContent | RawImgContent) {
   if (content._type === "block") {
@@ -90,13 +96,20 @@ function processProjectContent(content: RawTextContent | RawImgContent) {
 
 }
 
-
 export function processAboutMe(
-  
   rawAboutMe: SanityAboutMe,
-   locale =get(language)
+  locale: string = 'it'
 ): string {
-  return locale === 'it' 
-    ? rawAboutMe.italianContent || ''
-    : rawAboutMe.englishContent || '';
+  if (!rawAboutMe.content) return '';
+  
+  const blocks = locale === 'it' 
+    ? rawAboutMe.content.it || []
+    : rawAboutMe.content.en || [];
+  
+  
+  return blocks
+    .map(block => 
+      block.children?.map(span => span.text).join('') || ''
+    )
+    .join(' '); 
 }
