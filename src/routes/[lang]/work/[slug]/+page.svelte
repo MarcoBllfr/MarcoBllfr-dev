@@ -2,8 +2,10 @@
   import Icon from "@iconify/svelte";
   
   let { data } = $props();
-  let { company, name, dateAccomplished, stack, pojectImageUrl, content, description } = data.project;
-  let {title,image,metadescription,url} = data.meta;
+  const { project, lang, meta } = data;
+  let { company, name, dateAccomplished, stack, pojectImageUrl, content } = project;
+  let {title,image,metadescription,url} = meta;
+
   
   function getTagFromStyle(style: ProcessedTextContent["style"]): string {
     if (style === "normal") {
@@ -84,7 +86,7 @@
 
       <div class="relative max-w-2xl">
         <div class="pl-6 border-l-2 border-primary-500/30 space-y-2">
-          <p class="text-surface-300 leading-relaxed">{description}</p>
+          <p class="text-surface-300 leading-relaxed">{metadescription}</p>
         </div>
       </div>
     </div>
@@ -247,7 +249,7 @@
   <section class="border-t border-surface-800 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto flex justify-center">
       <a 
-        href="/"
+        href="/{lang}"
         class="group relative inline-flex items-center gap-3 px-8 py-4 overflow-hidden"
       >
         <div class="absolute inset-0 bg-gradient-to-r from-primary-500 via-tertiary-500 to-success-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

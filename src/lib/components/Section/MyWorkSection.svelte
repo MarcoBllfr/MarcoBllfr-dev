@@ -4,9 +4,10 @@
 
   interface MyworksProps {
     projects: ProcessedProject[];
+    lang: string;
   }
 
-  let { projects }: MyworksProps = $props();
+  let { projects, lang }: MyworksProps = $props();
 
   let visibleProjects = $state(4);
 
@@ -48,7 +49,7 @@
     <div class="grid grid-cols-2 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
       {#each projects.slice(0, visibleProjects) as project, index (project.slug)}
         <a
-          href={`/work/${project.slug}`}
+          href={`${lang}/work/${project.slug}`}
           class="group relative project-card col-span-1
             {index === 0 ? 'col-span-2' : ''}"
           style={`--index:${index}`}

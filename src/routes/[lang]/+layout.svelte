@@ -1,6 +1,6 @@
 <script lang="ts">
      import { Footer, Header } from "$components";
-    import '../app.css'
+    import '$css'
     let {children, data} = $props();
      let {title,description,image,url} = data.meta;
 </script>
@@ -21,8 +21,10 @@
   <meta name="og:site_name" content="MarcoBf-Dev">
 </svelte:head>
 <div class="site-wrapper">
-    <Header />
+    <Header lang={data.lang}/>
+     {#key data.lang}
     {@render children()}
+  {/key}
     <Footer />
   </div>
 

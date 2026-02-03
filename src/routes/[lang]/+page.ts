@@ -1,9 +1,9 @@
 import sanityClient, { processProjectEntries, processAboutMe } from "$lib/utils/sanity";
 import type { PageLoad } from "./$types";
-import { get } from 'svelte/store';
-import { language } from '$lib/stores/storage';
 
-export const load: PageLoad = async () => {
+
+export const load: PageLoad = async ({params}) => {
+  const { lang } = params; 
   const workExperience: SanityWorkExperience[] = await sanityClient.fetch(
     '*[_type == "devExperience"] | order(startDate desc)'
   );
@@ -25,23 +25,25 @@ export const load: PageLoad = async () => {
     '*[_type == "aboutMe"][0]'
   );
   
-  const projects = rawProject.map(processProjectEntries);
+    const projects = rawProject.map(p => processProjectEntries(p, lang));
   
 
-  const locale =get(language);
-  const aboutMe = processAboutMe(rawAboutMe, locale);
+
+  const aboutMe = processAboutMe(rawAboutMe, lang);
 
   return {
+    lang,
     workExperience,
     projects,
     skills,
     education,
-    rawAboutMe, 
+    aboutMe, 
      meta: {
       title: 'MarcoBf-Dev Home',
       description: 'Il mio sito web personale e portfolio',
       image: 'https://www.marcobf.dev/og-home.webp',
       url: 'https://www.marcobf.dev/'
     },
+    
   };
 };

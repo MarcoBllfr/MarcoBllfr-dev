@@ -1,38 +1,39 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
-  import { Button, SectionHeadline, ExperienceTable } from "$components";
+  import {SectionHeadline, ExperienceTable } from "$components";
   import image from "$assets/about-me.webp";
   import { goto } from "$app/navigation";
-  import { language } from "$lib/stores/storage";
-  import { processAboutMe } from "$lib/utils/sanity";
   import Icon from "@iconify/svelte";
   import { onMount } from "svelte";
 
-  function onclick(route: string) {
-    if (route == "contattami") {
-      goto("/contact-form");
-    } else {
-      goto("/my-work");
-    }
+ function handleButtonClick(route: string) {
+  const targetId = route === "contattami" ? "contact-form" : "my-work";
+  
+  const el = document.getElementById(targetId);
+  
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    goto(`/${lang}/${targetId}`);
   }
+}
 
   interface AboutMeProps {
     workExperience: SanityWorkExperience[];
     education: SanityEducation[];
-    rawAboutMe: SanityAboutMe;
+     aboutMe: string;
+     lang:string;
   }
 
-  let { workExperience, education, rawAboutMe }: AboutMeProps = $props();
-let aboutMe = $derived(rawAboutMe.italianContent);
-  //let aboutMe = $derived(processAboutMe(rawAboutMe, $language));
+  let { workExperience, education, aboutMe, lang }: AboutMeProps = $props();
+
+  
+
+
+  
 
   function toggleLanguage() {
-    language.set($language === "it" ? "en" : "it");
-     if ($language === "it"){
-      aboutMe=rawAboutMe.italianContent
-    }else{
-      aboutMe=rawAboutMe.englishContent
-    }
+    const newLang = lang === "it" ? "en" : "it";
+    goto(`/${newLang}`); // Naviga alla nuova lingua
   }
 
   //effetto scrittura
@@ -42,11 +43,6 @@ let aboutMe = $derived(rawAboutMe.italianContent);
   let isDeleting = $state(false);
 
   onMount(() => {
-    if ($language === "it"){
-      aboutMe=rawAboutMe.italianContent
-    }else{
-      aboutMe=rawAboutMe.englishContent
-    }
     function type() {
       const currentRole = roles[currentRoleIndex];
 
@@ -77,6 +73,7 @@ let aboutMe = $derived(rawAboutMe.italianContent);
     type();
   });
 </script>
+
 <SectionHeadline sectionName="about-me">
 <section
   class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
@@ -93,12 +90,12 @@ let aboutMe = $derived(rawAboutMe.italianContent);
                  text-sm font-bold uppercase"
         >
           <Icon
-            icon={$language === "it"
+            icon={lang === "it"
               ? "twemoji:flag-italy"
               : "twemoji:flag-united-kingdom"}
             width="16"
           />
-          <span>{$language}</span>
+          <span>{lang}</span>
         </button>
 
         <button
@@ -109,9 +106,9 @@ let aboutMe = $derived(rawAboutMe.italianContent);
         >
           <Icon icon="mdi:swap-horizontal" width="16" />
           <span class="hidden sm:inline"
-            >Switch to {$language === "it" ? "EN" : "IT"}</span
+            >Switch to {lang=== "it" ? "EN" : "IT"}</span
           >
-          <span class="sm:hidden">{$language === "it" ? "EN" : "IT"}</span>
+          <span class="sm:hidden">{lang === "it" ? "EN" : "IT"}</span>
         </button>
       </div>
 
@@ -134,7 +131,7 @@ let aboutMe = $derived(rawAboutMe.italianContent);
         <h1
           class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
         >
-          Marco Bellafiore
+         Marco Bellafiore
         </h1>
         <h1
           class="text-2xl sm:text-4xl lg:text-3xl xl:text-5xl font-bold leading-tight text-primary-500 min-h-[1.2em]"
@@ -146,12 +143,13 @@ let aboutMe = $derived(rawAboutMe.italianContent);
       <div
         class="prose-custom max-w-xl text-surface-300 leading-relaxed space-y-4"
       >
+      
         {@html aboutMe}
       </div>
 
       <div class="pt-6 flex flex-wrap gap-5 sm:gap-6 items-center">
         <button
-          onclick={() => onclick("mieiLavori")}
+          onclick={()=>handleButtonClick("work")}
           class="
       group relative isolate
       inline-flex items-center gap-3
@@ -194,7 +192,7 @@ let aboutMe = $derived(rawAboutMe.italianContent);
         </button>
 
         <button
-          onclick={() => onclick("contattami")}
+          onclick={() => handleButtonClick("contattami")}
           class="
       inline-flex items-center
 

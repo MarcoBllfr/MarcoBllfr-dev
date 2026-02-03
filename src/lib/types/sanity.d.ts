@@ -46,9 +46,9 @@ type SanityProject = {
     _type: "image";
   };
   dateAccomplished: string;
-  content: Array<RawTextContent | RawImgContent>;
+   content?: LocalizedBlockContent;
   stack: Array<string>;
-  description?:string;
+  description?: LocalizedString; 
 };
 
 interface RawTextContent {
@@ -90,9 +90,10 @@ interface ProcessedProject {
   stack: string[];
   pojectImageUrl: string;
   slug: string;
-  content: Array<ProcessedTextContent|ProcessedImgContent>;
-  description?:string;
-};
+  content: Array<ProcessedTextContent | ProcessedImgContent>;
+  description: string;
+}
+
 
 
 interface ProcessedTextBlock {
@@ -117,16 +118,24 @@ interface Skill {
   iconClass: string
   _key: string
 }
-
 type SanityAboutMe = {
   _id: string;
   _type: "aboutMe";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  italianContent?: string;
-  englishContent?: string;
+  content?: LocalizedBlockContent;
 };
+
 interface ProcessedAboutMe {
-  content: Array<ProcessedTextContent>;
+  content: string; 
 }
+
+type LocalizedBlockContent = {
+  it?: Array<RawTextContent>;
+  en?: Array<RawTextContent>;
+};
+type LocalizedString = { 
+  it?: string; 
+  en?: string 
+};
