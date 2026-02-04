@@ -37,7 +37,7 @@ export const load: PageLoad = async ({ params }) => {
       title: "meta.title",
       description: "meta.description",
       image: "https://www.marcobf.dev/og-home.webp",
-      url: "https://www.marcobf.dev/",
+      url: `https://www.marcobf.dev/${lang}`,
     },
     
   };

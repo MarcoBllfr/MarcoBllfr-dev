@@ -3,15 +3,29 @@
   import {HeroSection, AboutMeSection, MyWorkSection, SkillsSection, ContactSection} from "$components";
   const {data} = $props();
   let {workExperience,projects, skills, education, lang,aboutMe} = data;
-   import { t, locale, waitLocale } from "svelte-i18n";
+  let { title, description, image, url } = data.meta;
+   import "$translation/index.js";
+  import { t, locale, waitLocale } from "svelte-i18n";
 </script>
 <svelte:head>
   {#if $locale}
-    <title>{$t(data.meta.title)}</title>
-    <meta name="description" content={$t(data.meta.description)} />
-    
-    <meta property="og:title" content={$t(data.meta.title)} />
-    <meta property="og:description" content={$t(data.meta.description)} />
+     <title>{$t(title)}</title>
+  <meta name="description" content={$t(description)} />
+  <meta property="og:title" content={$t(title)} />
+  <meta property="og:description" content={$t(description)} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={url} />
+  <meta property="og:locale" content={data.lang === 'it' ? 'it_IT' : 'en_US'} />
+  <meta property="og:locale:alternate" content={data.lang === 'it' ? 'en_US' : 'it_IT'} />
+  <meta property="og:image" content={image} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={image} />
+  <meta name="twitter:title" content={$t(title)} />
+  <meta name="twitter:description" content={$t(description)} />
+  <meta name="og:site_name" content={$t(title)} />
+    <link rel="alternate" hreflang="it" href="https://www.marcobf.dev/it" />
+  <link rel="alternate" hreflang="en" href="https://www.marcobf.dev/en" />
+  <link rel="alternate" hreflang="x-default" href="https://www.marcobf.dev/it" />
   {/if}
 </svelte:head>
 <HeroSection />

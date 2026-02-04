@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-
+import { t } from "svelte-i18n";
   interface SkillSectionProps {
     skills: Skill[];
   }
@@ -34,7 +34,7 @@
       ></div>
 
       <p class="text-surface-400 max-w-2xl mx-auto font-mono text-sm">
-        {">"} Tools & technologies I use to build digital experiences
+        {">"} {$t('skill.description')}
       </p>
     </div>
 

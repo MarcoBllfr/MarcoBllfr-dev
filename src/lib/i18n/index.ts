@@ -5,4 +5,5 @@ register("en", () => import("./translations/en.json"));
 
 init({
   fallbackLocale: "it",
+  initialLocale: 'it',
 });
