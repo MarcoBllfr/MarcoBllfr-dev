@@ -6,6 +6,12 @@
   let { title, description, image, url } = data.meta;
    import "$translation/index.js";
   import { t, locale, waitLocale } from "svelte-i18n";
+   $locale = data.lang;
+  $effect(() => {
+    if ($locale !== data.lang) {
+      $locale = data.lang;
+    }
+  });
 </script>
 <svelte:head>
   {#if $locale}
