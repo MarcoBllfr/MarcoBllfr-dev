@@ -2,42 +2,37 @@ import sanityClient, { processProjectEntries, processAboutMe } from "$lib/utils/
 import type { PageLoad } from "./$types";
 
 
-export const load: PageLoad = async ({params}) => {
-  const { lang } = params; 
-  const workExperience: SanityWorkExperience[] = await sanityClient.fetch(
-    '*[_type == "devExperience"] | order(startDate desc)'
-  );
+export const config = {
+  isr: {
+    expiration: 86400, //3 minuti: 180 1 ora: 3600 24 ore: 86400
+  },
+};
 
-  const rawProject: SanityProject[] = await sanityClient.fetch(
-    '*[_type == "project"] | order(dateAccomplished desc)'
-  );
+export const load: PageLoad = async ({ params }) => {
+  const { lang } = params;
 
-  const skills: Skill[] = await sanityClient.fetch(
-    '*[_type == "skills"][0].skillsList'
-  );
-
-  const education: SanityEducation[] = await sanityClient.fetch(
-    '*[_type == "education"] | order(startDate desc)'
-  );
+  const query = `{
+    "workExperience": *[_type == "devExperience"] | order(startDate desc),
+    "rawProject": *[_type == "project"] | order(dateAccomplished desc),
+    "skills": *[_type == "skills"][0].skillsList,
+    "education": *[_type == "education"] | order(startDate desc),
+    "rawAboutMe": *[_type == "aboutMe"][0]
+  }`;
 
   
-  const rawAboutMe: SanityAboutMe = await sanityClient.fetch(
-    '*[_type == "aboutMe"][0]'
-  );
-  
-    const projects = rawProject.map(p => processProjectEntries(p, lang));
-  
+  const data = await sanityClient.fetch(query);
 
-
-  const aboutMe = processAboutMe(rawAboutMe, lang);
+ 
+  const projects = data.rawProject.map((p: any) => processProjectEntries(p, lang));
+  const aboutMe = processAboutMe(data.rawAboutMe, lang);
 
   return {
-    lang,
-    workExperience,
+   lang,
+    workExperience: data.workExperience,
     projects,
-    skills,
-    education,
-    aboutMe, 
+    skills: data.skills,
+    education: data.education,
+    aboutMe,
      meta: {
       title: 'MarcoBf-Dev Home',
       description: 'Il mio sito web personale e portfolio',
