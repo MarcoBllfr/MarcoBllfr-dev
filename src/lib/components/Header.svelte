@@ -4,6 +4,7 @@
   import Icon from "@iconify/svelte";
   import logo from "$assets/logo.svg";
   import { goto } from "$app/navigation";
+  import { browser } from "$app/environment";
   let { lang } = $props();
 
   const navLinks = [
@@ -12,11 +13,17 @@
     { id: "contact-form", label: "Contact", icon: "mdi:email-outline" },
   ];
 
-  function handleScroll(e: Event, id: string) {
+ function handleScroll(e: Event, id: string) {
     e.preventDefault();
     const el = document.getElementById(id);
+
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      if (browser) {
+        sessionStorage.setItem('scrollTarget', id);
+        goto(`/${lang}`); 
+      }
     }
   }
 </script>
