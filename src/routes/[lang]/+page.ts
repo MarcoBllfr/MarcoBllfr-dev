@@ -1,7 +1,7 @@
 import sanityClient, { processProjectEntries, processAboutMe } from "$lib/utils/sanity";
 import type { PageLoad } from "./$types";
 
-
+  import { t, locale, waitLocale } from "svelte-i18n";
 export const config = {
   isr: {
     expiration: 86400, //3 minuti: 180 1 ora: 3600 24 ore: 86400
@@ -34,10 +34,10 @@ export const load: PageLoad = async ({ params }) => {
     education: data.education,
     aboutMe,
      meta: {
-      title: 'MarcoBf-Dev Home',
-      description: 'Il mio sito web personale e portfolio',
-      image: 'https://www.marcobf.dev/og-home.webp',
-      url: 'https://www.marcobf.dev/'
+      title: "meta.title",
+      description: "meta.description",
+      image: "https://www.marcobf.dev/og-home.webp",
+      url: "https://www.marcobf.dev/",
     },
     
   };
