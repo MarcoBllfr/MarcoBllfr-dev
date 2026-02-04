@@ -14,6 +14,7 @@
 </script>
 
  <svelte:head>
+  
   <title>{$t(title)}</title>
   <meta name="description" content={$t(description)} />
   <meta property="og:title" content={$t(title)} />

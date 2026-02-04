@@ -32,13 +32,7 @@ export const load: PageLoad = async ({ params }) => {
     projects,
     skills: data.skills,
     education: data.education,
-    aboutMe,
-     meta: {
-      title: "meta.title",
-      description: "meta.description",
-      image: "https://www.marcobf.dev/og-home.webp",
-      url: `https://www.marcobf.dev/${lang}`,
-    },
+    aboutMe
     
   };
 };
