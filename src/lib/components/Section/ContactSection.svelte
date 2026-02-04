@@ -1,6 +1,8 @@
 <script lang="ts">
   import { SectionHeadline } from "$components";
   import Icon from "@iconify/svelte";
+  import { t } from "svelte-i18n";
+
 </script>
 
  <SectionHeadline sectionName="contact-form">
@@ -16,7 +18,7 @@
         <span
           class="bg-linear-to-r from-primary-400 via-tertiary-400 to-success-400 bg-clip-text text-transparent"
         >
-          Contatti
+          {$t('contact.title')}
         </span>
       </h2>
       <div
@@ -24,7 +26,7 @@
       ></div>
 
       <p class="text-surface-400 max-w-2xl mx-auto font-mono text-sm">
-        {">"} Scegli il tuo canale preferito.
+        {">"} {$t('contact.description')}.
       </p>
     </div>
 
@@ -56,7 +58,7 @@
               Email
             </h3>
             <p class="hidden sm:block text-xs font-mono text-surface-500">
-              contattami tramite Email
+              {$t('contact.mail')}
             </p>
           </div>
 
@@ -99,7 +101,7 @@
               LinkedIn
             </h3>
             <p class="hidden sm:block text-xs font-mono text-surface-500">
-              contatto Linkedin
+              {$t('contact.linkedin')}
             </p>
           </div>
 
@@ -142,7 +144,7 @@
               GitHub
             </h3>
             <p class="hidden sm:block text-xs font-mono text-surface-500">
-              vedi il codice
+              {$t('contact.github')}
             </p>
           </div>
 

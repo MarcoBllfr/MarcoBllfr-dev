@@ -5,12 +5,13 @@
   import logo from "$assets/logo.svg";
   import { goto } from "$app/navigation";
   import { browser } from "$app/environment";
+  import { t } from "svelte-i18n";
   let { lang } = $props();
 
   const navLinks = [
-    { id: "about-me", label: "About Me", icon: "mdi:account" },
-    { id: "my-work", label: "Work", icon: "mdi:briefcase" },
-    { id: "contact-form", label: "Contact", icon: "mdi:email-outline" },
+    { id: "about-me", label: "nav.about", icon: "mdi:account" },
+    { id: "my-work", label: "nav.projects", icon: "mdi:briefcase" },
+    { id: "contact-form", label: "nav.contact", icon: "mdi:email-outline" },
   ];
 
  function handleScroll(e: Event, id: string) {
@@ -45,7 +46,7 @@
             class="nav-link flex items-center gap-2"
           >
             <Icon icon={link.icon} width="18" />
-            {link.label}
+            {$t(link.label)}
           </a>
         {/each}
         <DarkThemeButton />
@@ -71,7 +72,7 @@
                   class="menu-item"
                 >
                   <Icon icon={link.icon} width="18" />
-                  <Menu.ItemText>{link.label}</Menu.ItemText>
+                  <Menu.ItemText>{$t(link.label)}</Menu.ItemText>
                 </Menu.Item>
               {/each}
             </Menu.Content>

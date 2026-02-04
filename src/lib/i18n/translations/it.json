@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "title": "MarcoBf-Dev Portfolio",
+    "description": "Il mio sito web personale e portfolio"
+  },
+  "contact": {
+    "title": "Contatti",
+    "description": "Scegli il tuo canale preferito",
+    "mail":"contattami tramite email",
+    "linkedin":"contatto linkedin",
+    "github":"vedi il codice"
+  },
+  "skill":{
+    "description":"Tecnologie che uso per creare progetti web"
+  },
+  "nav":{
+    "about": "Chi sono",
+    "projects": "Progetti",
+    "contact": "Contatti"
+  },
+  "home":{
+    "projects":"Progetti"
+  }
+}
